@@ -13,8 +13,7 @@ import java.io.Serializable;
  */
 public class Usuario {
 
-    private String nomeUsuario;
-    private String CPF;
+    private String nomeUsuario,CPF, senhaUsuario, flagAtivo;
 
     /**
      * @return the nomeUsuario
@@ -42,6 +41,22 @@ public class Usuario {
      */
     public void setCPF(String CPF) {
         this.CPF = CPF;
+    }
+
+    public String getSenhaUsuario() {
+        return senhaUsuario;
+    }
+
+    public void setSenhaUsuario(String senhaUsuario) {
+        this.senhaUsuario = senhaUsuario;
+    }
+
+    public String getFlagAtivo() {
+        return flagAtivo;
+    }
+
+    public void setFlagAtivo(String flagAtivo) {
+        this.flagAtivo = flagAtivo;
     }
 
 }

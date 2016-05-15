@@ -45,29 +45,24 @@ PersistenciaUsuario persistenciaUsuario = new PersistenciaUsuario();
         if (usuario.getNomeUsuario().trim().equals("")){
             throw new Exception("Informe o nome");
         }
+        if (usuario.getSenhaUsuario() == null){
+            throw new Exception("Informe a senha");
+        }
+        if (usuario.getSenhaUsuario().trim().equals("")){
+            throw new Exception("Informe a senha");
+        }
+        if (usuario.getFlagAtivo() == null) {
+            throw new Exception("Ativo?");
+        }
+        if (usuario.getFlagAtivo().trim().equals("")) {
+            throw new Exception("Entre com 0 ou 1");
+        }
         if (this.verificaExistencia(usuario) >= 0){
             throw new Exception("Usuario já cadastrado");
         }
         persistenciaUsuario.gravarDados(usuario);
     }
-    
-    public void remover(Usuario usuario) throws Exception{
-        if (usuario == null){
-            throw new Exception("Usuario não existe");
-        }
-        if (usuario.getCPF() == null){
-            throw new Exception("Informe o CPF");
-        }
-        if (usuario.getCPF().trim().equals("")){
-            throw new Exception("Informe o CPF");
-        }
-        if (this.verificaExistencia(usuario) == -1){
-            throw new Exception("Usuario não encontrado");
-        }
-        persistenciaUsuario.Deletar(usuario);
-         //this.lista.remove(this.verificaExistencia(usuario));
-    }
-    
+        
     public void atualizar(Usuario usuario) throws Exception{
         if (usuario == null){
             throw new Exception("Usuario não existe");
@@ -83,6 +78,18 @@ PersistenciaUsuario persistenciaUsuario = new PersistenciaUsuario();
         }
         if (usuario.getNomeUsuario().trim().equals("")){
             throw new Exception("Informe o nome");
+        }
+        if (usuario.getSenhaUsuario() == null){
+            throw new Exception("Informe a senha");
+        }
+        if (usuario.getSenhaUsuario().trim().equals("")){
+            throw new Exception("Informe a senha");
+        }
+        if (usuario.getFlagAtivo() == null) {
+            throw new Exception("Ativo?");
+        }
+        if (usuario.getFlagAtivo().trim().equals("")) {
+            throw new Exception("Entre com 0 ou 1");
         }
         if (this.verificaExistencia(usuario) == -1){
             throw new Exception("Usuario não cadastrado");

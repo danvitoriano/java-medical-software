@@ -108,7 +108,7 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Nome"});
+        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Senha","Ativo?"});
         
         RepositorioUsuario rep = RepositorioUsuario.obterInstancia();        
         try {
@@ -118,7 +118,7 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
         }
         
         for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getCPF(),this.lista.get(i).getNomeUsuario()});
+            modelo.addRow(new Object[]{this.lista.get(i).getCPF(),this.lista.get(i).getNomeUsuario(),this.lista.get(i).getSenhaUsuario(),this.lista.get(i).getFlagAtivo()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
