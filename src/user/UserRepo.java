@@ -179,7 +179,7 @@ public class UserRepo {
         return retorno;
     }
     
-    public int verificaExistencia2(User user) {
+    public int searchCpf(User user) {
         int retorno = -1;
         for (int i = 0; i < this.lista.size(); i++) {
             if (user.getCpf().trim().equals(this.lista.get(i).getCpf().trim())) {
@@ -187,7 +187,7 @@ public class UserRepo {
                 break;
             }
         }
-        JOptionPane.showMessageDialog(null, retorno);
+//        JOptionPane.showMessageDialog(null, retorno);
         return retorno;
     }
 
