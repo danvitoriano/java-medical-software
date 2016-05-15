@@ -42,19 +42,30 @@ public class Usuario {
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
-
+    
+    /**
+     * @return the senhaUsuario
+     */
     public String getSenhaUsuario() {
         return senhaUsuario;
     }
-
+    /**
+     * @param senhaUsuario the senhaUsuario to set
+     */
     public void setSenhaUsuario(String senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
     }
-
+    
+    /**
+     * @return the flagAtivo
+     */
     public String getFlagAtivo() {
         return flagAtivo;
     }
-
+    
+    /**
+     * @param flagAtivo the flagAtivo to set
+     */
     public void setFlagAtivo(String flagAtivo) {
         this.flagAtivo = flagAtivo;
     }

@@ -39,6 +39,7 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButtonListar = new javax.swing.JButton();
         jButtonNovoUsuario = new javax.swing.JButton();
+        jButtonAlterarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,6 +70,13 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
             }
         });
 
+        jButtonAlterarUsuario.setText("Alterar");
+        jButtonAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +90,8 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
                 .addComponent(jButtonListar)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonNovoUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAlterarUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,7 +102,8 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonListar)
-                    .addComponent(jButtonNovoUsuario))
+                    .addComponent(jButtonNovoUsuario)
+                    .addComponent(jButtonAlterarUsuario))
                 .addContainerGap())
         );
 
@@ -108,7 +119,7 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Senha","Ativo?"});
+        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Senha","Ativo"});
         
         RepositorioUsuario rep = RepositorioUsuario.obterInstancia();        
         try {
@@ -122,6 +133,12 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
+        // TODO add your handling code here:
+        FormAlterarUsuario form = new FormAlterarUsuario(this.lista.get(jTable1.getSelectedRow()));
+        form.show();
+    }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +177,7 @@ public class FormConsultaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterarUsuario;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonNovoUsuario;
     private javax.swing.JScrollPane jScrollPane1;
