@@ -23,6 +23,14 @@ import java.util.ArrayList;
 import static java.nio.file.Files.lines;
 import static java.nio.file.Files.lines;
 import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
+import static java.nio.file.Files.lines;
 
 /**
  *
@@ -36,6 +44,8 @@ public class PersistenciaUsuario {
         BufferedWriter bw = new BufferedWriter(osw);
         bw.write(usuario.getCPF() + ";");
         bw.write(usuario.getNomeUsuario() + ";");
+        bw.write(usuario.getSenhaUsuario() + ";");
+        bw.write(usuario.getFlagAtivo() + ";");
         bw.write("\n");
         bw.close();
     }
@@ -50,6 +60,8 @@ public class PersistenciaUsuario {
             Usuario usuario = new Usuario();
             usuario.setCPF(params[0]);
             usuario.setNomeUsuario(params[1]);
+            usuario.setSenhaUsuario(params[2]);
+            usuario.setFlagAtivo(params[3]);
             usuarios.add(usuario);
             line = reader.readLine();
         }
@@ -68,9 +80,13 @@ public class PersistenciaUsuario {
             if (linha.getCPF().contains(buscar)) {
                 linha.setCPF(usuario.getCPF());
                 linha.setNomeUsuario(usuario.getNomeUsuario());
+                linha.setSenhaUsuario(usuario.getSenhaUsuario());
+                linha.setFlagAtivo(usuario.getFlagAtivo());
             }
             newLines.add(linha.getCPF()+ ";"
-                    + linha.getNomeUsuario()+ ";\n");
+                    + linha.getNomeUsuario()+ ";"
+                    + linha.getSenhaUsuario()+ ";"
+                    + linha.getFlagAtivo()+ ";\n");
         }
         try (FileOutputStream fileOut = new FileOutputStream("usuarios.txt")) {
             for (String newLine : newLines) {
@@ -80,25 +96,4 @@ public class PersistenciaUsuario {
         }
     }
 
-    public void Deletar(Usuario usuario) throws FileNotFoundException, IOException, Exception {
-        ArrayList<Usuario> usuarios = lerDados();
-        ArrayList<String> newLines = new ArrayList<>();
-        Usuario linha = null;
-        String buscar = usuario.getCPF();
-        for (int i = 0; i < usuarios.size(); i++) {
-
-            linha = usuarios.get(i);
-
-            if (!linha.getCPF().contains(buscar)) {
-            newLines.add(linha.getCPF()+ ";"
-                    + linha.getNomeUsuario()+ ";\n");
-            }
-        }
-        try (FileOutputStream fileOut = new FileOutputStream("usuarios.txt")) {
-            for (String newLine : newLines) {
-                fileOut.write(newLine.getBytes());
-            }
-            fileOut.close();
-        }
-    }
 }

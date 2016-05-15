@@ -1,5 +1,6 @@
-44;uqatro;
-1234;asdsda;
-8888;danilo;
-4444444;ggggg;
-25158897867;Danilo Vitoriano;
+44;uqatro;11;0;
+1234;asdsda;11;0;
+8888;danilo;11;1;
+4444444;ggggg;11;1;
+25158897867;Danilo Vitoriano;11;1;
+4453467738;Joana Prado;888;0;
