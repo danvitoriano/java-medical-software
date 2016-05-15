@@ -5,24 +5,19 @@
  */
 package user;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author vitoriano
  */
 public class UserSearchForm extends javax.swing.JFrame {
-    private ArrayList<User> lista;
 
     /**
-     * Creates new form FormConsultaUser
+     * Creates new form UserSearchForm
      */
     public UserSearchForm() {
         initComponents();
-        this.jButtonListarActionPerformed(null);
     }
 
     /**
@@ -34,45 +29,15 @@ public class UserSearchForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButtonListar = new javax.swing.JButton();
-        jButtonNovoUsuario = new javax.swing.JButton();
-        jButtonAlterarUsuario = new javax.swing.JButton();
+        jTextFieldBuscar = new javax.swing.JTextField();
+        jButtonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButtonListar.setText("Listar");
-        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonListarActionPerformed(evt);
-            }
-        });
-
-        jButtonNovoUsuario.setText("Novo");
-        jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoUsuarioActionPerformed(evt);
-            }
-        });
-
-        jButtonAlterarUsuario.setText("Alterar");
-        jButtonAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarUsuarioActionPerformed(evt);
+                jButtonBuscarActionPerformed(evt);
             }
         });
 
@@ -80,64 +45,39 @@ public class UserSearchForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonListar)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonNovoUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonAlterarUsuario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonListar)
-                    .addComponent(jButtonNovoUsuario)
-                    .addComponent(jButtonAlterarUsuario))
-                .addContainerGap())
+                .addGap(68, 68, 68)
+                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBuscar)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        UserAddForm form = new UserAddForm();
-        form.show();
-    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
-
-    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Senha","Ativo","Tipo"});
-        
-        UserRepo rep = UserRepo.obterInstancia();        
-        try {
-            this.lista = rep.listarTodos();
-        } catch (Exception ex) {
-            Logger.getLogger(UserSearchForm.class.getName()).log(Level.SEVERE, null, ex);
+        try{
+            User user = new User();
+            user.setCpf(jTextFieldBuscar.getText());
+            UserRepo.obterInstancia().verificaExistencia2(user);
+            
+//            this.setVisible(false);
+//            this.dispose();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
-        for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(),this.lista.get(i).getName(),this.lista.get(i).getPwd(),this.lista.get(i).getActive(),this.lista.get(i).getProfile()});
-        }
-        jTable1.setModel(modelo);
-    }//GEN-LAST:event_jButtonListarActionPerformed
-
-    private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
-        // TODO add your handling code here:
-        UserEditForm form = new UserEditForm(this.lista.get(jTable1.getSelectedRow()));
-        form.show();
-    }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,13 +105,6 @@ public class UserSearchForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UserSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -182,10 +115,7 @@ public class UserSearchForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterarUsuario;
-    private javax.swing.JButton jButtonListar;
-    private javax.swing.JButton jButtonNovoUsuario;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }
