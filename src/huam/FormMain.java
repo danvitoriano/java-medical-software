@@ -5,7 +5,7 @@
  */
 package huam;
 
-import usuario.FormConsultaUsuario;
+import user.UserListForm;
 
 /**
  *
@@ -62,7 +62,7 @@ public class FormMain extends javax.swing.JFrame {
 
     private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
         // TODO add your handling code here:
-        FormConsultaUsuario form = new FormConsultaUsuario();
+        UserListForm form = new UserListForm();
         form.show();
     }//GEN-LAST:event_jButtonUsuarioActionPerformed
 
