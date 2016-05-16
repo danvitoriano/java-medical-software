@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huam;
+package usuario;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,21 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import static java.nio.file.Files.lines;
 import java.util.ArrayList;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
-import static java.nio.file.Files.lines;
 
 /**
  *
@@ -46,6 +31,7 @@ public class PersistenciaUsuario {
         bw.write(usuario.getNomeUsuario() + ";");
         bw.write(usuario.getSenhaUsuario() + ";");
         bw.write(usuario.getFlagAtivo() + ";");
+        bw.write(usuario.getTipo() + ";");
         bw.write("\n");
         bw.close();
     }
@@ -62,6 +48,7 @@ public class PersistenciaUsuario {
             usuario.setNomeUsuario(params[1]);
             usuario.setSenhaUsuario(params[2]);
             usuario.setFlagAtivo(params[3]);
+            usuario.setTipo(params[4]);
             usuarios.add(usuario);
             line = reader.readLine();
         }
@@ -82,11 +69,13 @@ public class PersistenciaUsuario {
                 linha.setNomeUsuario(usuario.getNomeUsuario());
                 linha.setSenhaUsuario(usuario.getSenhaUsuario());
                 linha.setFlagAtivo(usuario.getFlagAtivo());
+                linha.setTipo(usuario.getTipo());
             }
             newLines.add(linha.getCPF()+ ";"
                     + linha.getNomeUsuario()+ ";"
                     + linha.getSenhaUsuario()+ ";"
-                    + linha.getFlagAtivo()+ ";\n");
+                    + linha.getFlagAtivo()+ ";"
+                    + linha.getTipo()+ ";\n");
         }
         try (FileOutputStream fileOut = new FileOutputStream("usuarios.txt")) {
             for (String newLine : newLines) {

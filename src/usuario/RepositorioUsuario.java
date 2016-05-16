@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package huam;
+package usuario;
 
 import java.util.ArrayList;
 
@@ -57,6 +57,12 @@ PersistenciaUsuario persistenciaUsuario = new PersistenciaUsuario();
         if (usuario.getFlagAtivo().trim().equals("")) {
             throw new Exception("Entre com 0 ou 1");
         }
+        if (usuario.getTipo() == null) {
+            throw new Exception("Tipo");
+        }
+        if (usuario.getTipo().trim().equals("")) {
+            throw new Exception("c");
+        }
         if (this.verificaExistencia(usuario) >= 0){
             throw new Exception("Usuario já cadastrado");
         }
@@ -90,6 +96,12 @@ PersistenciaUsuario persistenciaUsuario = new PersistenciaUsuario();
         }
         if (usuario.getFlagAtivo().trim().equals("")) {
             throw new Exception("Entre com 0 ou 1");
+        }
+        if (usuario.getTipo() == null) {
+            throw new Exception("Tipo");
+        }
+        if (usuario.getTipo().trim().equals("")) {
+            throw new Exception("informe o tipo");
         }
         if (this.verificaExistencia(usuario) == -1){
             throw new Exception("Usuario não cadastrado");

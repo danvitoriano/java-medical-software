@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huam;
-
-import java.io.Serializable;
+package usuario;
 
 /**
  *
@@ -13,7 +11,7 @@ import java.io.Serializable;
  */
 public class Usuario {
 
-    private String nomeUsuario,CPF, senhaUsuario, flagAtivo;
+    private String nomeUsuario,CPF, senhaUsuario, flagAtivo, tipo;
 
     /**
      * @return the nomeUsuario
@@ -42,21 +40,48 @@ public class Usuario {
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
-
+    
+    /**
+     * @return the senhaUsuario
+     */
     public String getSenhaUsuario() {
         return senhaUsuario;
     }
-
+ 
+    /**
+     * @param senhaUsuario the senhaUsuario to set
+     */
     public void setSenhaUsuario(String senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
     }
-
+    
+    /**
+     * @return the flagAtivo
+     */
     public String getFlagAtivo() {
         return flagAtivo;
     }
-
+    
+    /**
+     * @param flagAtivo the flagAtivo to set
+     */
     public void setFlagAtivo(String flagAtivo) {
         this.flagAtivo = flagAtivo;
     }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
 
 }

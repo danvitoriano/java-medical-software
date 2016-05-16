@@ -5,6 +5,8 @@
  */
 package huam;
 
+import usuario.FormConsultaUsuario;
+
 /**
  *
  * @author vitoriano
