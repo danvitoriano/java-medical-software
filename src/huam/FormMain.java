@@ -5,19 +5,26 @@
  */
 package huam;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import usuario.FormConsultaUsuario;
+import paciente.ConsultarPacientes;
+import paciente.Paciente;
 
 /**
  *
  * @author vitoriano
  */
 public class FormMain extends javax.swing.JFrame {
-
+    private ArrayList<Paciente> lista;
     /**
      * Creates new form FormMain
      */
     public FormMain() {
         initComponents();
+        showPacientes();
     }
 
     /**
@@ -29,42 +36,80 @@ public class FormMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonUsuario = new javax.swing.JButton();
+        jMenu4 = new javax.swing.JMenu();
+        jFrame1 = new javax.swing.JFrame();
+        tabela = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        jMenu4.setText("jMenu4");
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonUsuario.setText("Usuarios");
-        jButtonUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabela.setViewportView(jTable1);
+
+        jMenu5.setText("File");
+
+        jMenuItem1.setLabel("Usuários");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUsuarioActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        jMenu5.add(jMenuItem1);
+
+        jMenuBar2.add(jMenu5);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(jButtonUsuario)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tabela, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jButtonUsuario)
-                .addContainerGap(206, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(tabela, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         FormConsultaUsuario form = new FormConsultaUsuario();
         form.show();
-    }//GEN-LAST:event_jButtonUsuarioActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,8 +145,47 @@ public class FormMain extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void showPacientes() {                                              
+        
+        //New Table Model
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new String[]{
+    /*1*/        "CPF", 
+    /*2*/        "Nome",
+    /*3*/        "Ativo",
+    /*4*/        "Data de Nascimento", 
+    /*5*/        "Sexo", 
+    /*6*/        "Endereço"});
+        
+        //Consultar Pacientes
+        ConsultarPacientes consultar = ConsultarPacientes.obterInstancia();        
+        try {
+            this.lista = consultar.lerDados();
+        } catch (Exception ex) {
+            Logger.getLogger(FormConsultaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for(int i = 0; i < lista.size(); i++){
+            modelo.addRow(new Object[]{
+                this.lista.get(i).getCPF(),
+                this.lista.get(i).getNomeUsuario(),
+                this.lista.get(i).getFlagAtivo(),
+                this.lista.get(i).getDataDeNascimento(),
+                this.lista.get(i).getSexo(),
+                this.lista.get(i).getEndereco()
+                });
+        }
+        jTable1.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonUsuario;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane tabela;
     // End of variables declaration//GEN-END:variables
 }
