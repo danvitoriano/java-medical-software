@@ -31,7 +31,7 @@ public class UserPersist {
      * @param user
      * @throws java.io.FileNotFoundException
      */
-    public void gravarDados(User user) throws FileNotFoundException, IOException {
+    public void setData(User user) throws FileNotFoundException, IOException {
         OutputStream os = new FileOutputStream("users.txt", true);
         OutputStreamWriter osw = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osw);
@@ -50,7 +50,7 @@ public class UserPersist {
      * @return
      * @throws java.io.FileNotFoundException
      */
-    public ArrayList<User> lerDados() throws FileNotFoundException, IOException, Exception {
+    public ArrayList<User> readData() throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("users.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         ArrayList<User> users = new ArrayList<User>();
@@ -75,8 +75,8 @@ public class UserPersist {
      * @param user
      * @throws java.io.FileNotFoundException
      */
-    public void Atualizar(User user) throws FileNotFoundException, IOException, Exception {
-        ArrayList<User> users = lerDados();
+    public void updateData(User user) throws FileNotFoundException, IOException, Exception {
+        ArrayList<User> users = readData();
         ArrayList<String> newLines = new ArrayList<>();
         User linha = null;
         String buscar = user.getCpf();

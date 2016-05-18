@@ -6,7 +6,7 @@
 package user;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,20 +14,20 @@ import javax.swing.JOptionPane;
  */
 public class UserRepo {
 
-    private ArrayList<User> lista;
-    private static UserRepo instanciaRep;
-    UserPersist persistenciaUser = new UserPersist();
+    private ArrayList<User> listUser;
+    private static UserRepo instanceUserRep;
+    UserPersist persistUser = new UserPersist();
 
     /**
      * get or create UserRepo
      *
      * @return
      */
-    public static UserRepo obterInstancia() {
-        if (instanciaRep == null) {
-            instanciaRep = new UserRepo();
+    public static UserRepo getInstance() {
+        if (instanceUserRep == null) {
+            instanceUserRep = new UserRepo();
         }
-        return instanciaRep;
+        return instanceUserRep;
     }
 
     /**
@@ -36,35 +36,48 @@ public class UserRepo {
      * @return
      * @throws java.lang.Exception
      */
-    public ArrayList<User> listarTodos() throws Exception {
-        this.lista = persistenciaUser.lerDados();
-        return this.lista;
+    public ArrayList<User> listAllUsers() throws Exception {
+        this.listUser = persistUser.readData();
+        return this.listUser;
     }
 
     /**
      * return specific user
      *
-     * @param user
+     * @param cpf
      * @return
      * @throws java.lang.Exception
      */
-    public  ArrayList<User> listarUser(User user) throws Exception {
-        int retorno = -1;
-        for (int i = 0; i < this.lista.size(); i++) {
-            if (user.getCpf().trim().equals(this.lista.get(i).getCpf().trim())) {
-                retorno = i;
-                break;
+    public  User listUser(String cpf) throws Exception {
+        ArrayList<User> listUsers;
+        listUsers = listAllUsers();
+        for (User user : listUsers) {
+            if (user.getCpf().equals(cpf)){
+                return user;
             }
-        }
-        //this.lista = persistenciaUser.lerDados();
-        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
-        return this.lista;
-        //return retorno;
+        } //        for (int i = 0; i < this.listUser.size(); i++) {
+//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
+//                ret = i;
+//                break;
+//            }
+//        }
         
-        //return this.lista;
+//        int ret = -1;
+//        for (int i = 0; i < this.listUser.size(); i++) {
+//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
+//                ret = i;
+//                break;
+//            }
+//        }
+//        //this.listUser = persistUser.readData();
+//        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+//        return this.listUser;
+        //return ret;
         
-        //return retorno;
+        //return this.listUser;
         
+        //return ret;
+        return null;
           
     }
 
@@ -76,7 +89,7 @@ public class UserRepo {
      */
     public void inserir(User user) throws Exception {
         if (user == null) {
-            throw new Exception("User não existe");
+            throw new Exception("User don't exist");
         }
         if (user.getCpf() == null) {
             throw new Exception("Informe o Cpf");
@@ -108,10 +121,10 @@ public class UserRepo {
         if (user.getProfile().trim().equals("")) {
             throw new Exception("c");
         }
-        if (this.verificaExistencia(user) >= 0) {
+        if (this.ifExists(user) >= 0) {
             throw new Exception("User já cadastrado");
         }
-        persistenciaUser.gravarDados(user);
+        persistUser.setData(user);
     }
 
     /**
@@ -120,7 +133,7 @@ public class UserRepo {
      * @param user
      * @throws java.lang.Exception
      */
-    public void atualizar(User user) throws Exception {
+    public void update(User user) throws Exception {
         if (user == null) {
             throw new Exception("User não existe");
         }
@@ -154,12 +167,12 @@ public class UserRepo {
         if (user.getProfile().trim().equals("")) {
             throw new Exception("informe o tipo");
         }
-        if (this.verificaExistencia(user) == -1) {
+        if (this.ifExists(user) == -1) {
             throw new Exception("User não cadastrado");
         }
-        persistenciaUser.Atualizar(user);
+        persistUser.updateData(user);
 
-        //this.lista.set(this.verificaExistencia(user), user);   
+        this.listUser.set(this.ifExists(user), user);   
     }
 
     /**
@@ -168,58 +181,28 @@ public class UserRepo {
      * @param user
      * @return
      */
-    public int verificaExistencia(User user) {
-        int retorno = -1;
-        for (int i = 0; i < this.lista.size(); i++) {
-            if (user.getCpf().trim().equals(this.lista.get(i).getCpf().trim())) {
-                retorno = i;
+    public int ifExists(User user) {
+        int ret = -1;
+        for (int i = 0; i < this.listUser.size(); i++) {
+            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
+                ret = i;
                 break;
             }
         }
-        return retorno;
+        return ret;
     }
     
     public int searchCpf(User user) {
         int retorno = -1;
-        for (int i = 0; i < this.lista.size(); i++) {
-            if (user.getCpf().trim().equals(this.lista.get(i).getCpf().trim())) {
+        for (int i = 0; i < this.listUser.size(); i++) {
+            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
                 retorno = i;
                 break;
             }
         }
-//        JOptionPane.showMessageDialog(null, retorno);
+//        JOptionPane.showMessageDialog(null, ret);
         return retorno;
     }
 
-    
-    public class Vetor {
-
-        private final ArrayList<User> users;
-
-        public Vetor() throws Exception {
-            this.users = listarTodos();
-        }
-
-        /**
-         *
-         * @param key
-         * @return
-         */
-//        public int buscaBinaria(int key, int inicio, int fim) {
-////
-////        if (inicio > fim)
-////            return -1;
-////        int meio = (inicio + fim) / 2;
-////        if(key == users[meio])
-////            return meio; // encontrou a chave
-////        if(key < users[meio]) // calcula os indices para a proxima iteraçao
-////            return buscaBinaria(key, inicio, meio - 1);
-////        else
-////            return buscaBinaria(key, meio + 1, fim );
-////        
-//
-//        }
-
-    }
 
 }

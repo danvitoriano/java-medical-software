@@ -194,8 +194,8 @@ public class UserEditForm extends javax.swing.JFrame {
             userEdit.setPwd(jTextFieldSenha.getText());
             userEdit.setActive(jTextFieldAtivo.getText());
             userEdit.setProfile(jTextFieldTipo.getText());
-            UserRepo rep = UserRepo.obterInstancia();
-            rep.atualizar(userEdit);
+            UserRepo rep = UserRepo.getInstance();
+            rep.update(userEdit);
             JOptionPane.showMessageDialog(null, "User Alterado com sucesso");
             this.dispose();
         }catch(Exception ex){
