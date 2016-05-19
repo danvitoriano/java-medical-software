@@ -1,0 +1,7 @@
+1;Mario de Andrade;0;
+2;David Bowie;0;
+3;Zé Maria;1;
+4;Taylor Swift;1;
+5;Michael Jackson;0;
+6;Charlie Brown;0;
+7;Caubi Peixoto;0;
