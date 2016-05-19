@@ -22,8 +22,6 @@ import java.util.ArrayList;
  * @author dvitoriano
  */
 public class UserPersist {
-    
-    
 
     /**
      * record an user
@@ -53,7 +51,7 @@ public class UserPersist {
     public ArrayList<User> readData() throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("users.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users = new ArrayList<>();
         String line = reader.readLine();
         while (line != null) {
             String[] params = line.split(";");
@@ -78,13 +76,13 @@ public class UserPersist {
     public void updateData(User user) throws FileNotFoundException, IOException, Exception {
         ArrayList<User> users = readData();
         ArrayList<String> newLines = new ArrayList<>();
-        User linha = null;
-        String buscar = user.getCpf();
+        User linha;
+        String searchCpf = user.getCpf();
         for (int i = 0; i < users.size(); i++) {
 
             linha = users.get(i);
 
-            if (linha.getCpf().contains(buscar)) {
+            if (linha.getCpf().contains(searchCpf)) {
                 linha.setCpf(user.getCpf());
                 linha.setName(user.getName());
                 linha.setPwd(user.getPwd());
@@ -104,8 +102,17 @@ public class UserPersist {
             fileOut.close();
         }
     }
-
     
-    
+    public String getCpf() throws Exception{
+        ArrayList<User> cpfs = readData();
+        int i = 1;
+        for (User users : cpfs) {
+            int userCpf = Integer.parseInt(users.getCpf());
+            if (userCpf>i) {
+                i = userCpf + 1;
+            }
+        }
+        return String.valueOf(i);
+    }
 
 }
