@@ -5,6 +5,9 @@
  */
 package record;
 
+import record.Record;
+import patient.Patient;
+import record.RecordRepo;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,12 +19,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RecordListForm extends javax.swing.JFrame {
     private ArrayList<Record> lista;
+    private final Patient patientRecord;
 
     /**
      * Creates new form FormConsultaUser
      */
-    public RecordListForm() {
+    public RecordListForm(Patient patient) {
         initComponents();
+        patientRecord = patient;
         this.jButtonListarActionPerformed(null);
     }
 
@@ -129,17 +134,22 @@ public class RecordListForm extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Id","Anamnese","Data"});
+        modelo.setColumnIdentifiers(new String[]{"CPF","Id","Anamnese","Data","idUser"});
         
         RecordRepo rep = RecordRepo.getInstance();        
         try {
-            this.lista = rep.listAllUsers();
+            this.lista = rep.listAllUsers(patientRecord.getCpf());
         } catch (Exception ex) {
             Logger.getLogger(RecordListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(),this.lista.get(i).getId(),this.lista.get(i).getAnamnese(),this.lista.get(i).getDt()});
+            modelo.addRow(new Object[]{
+                this.lista.get(i).getCpf(),
+                this.lista.get(i).getId(),
+                this.lista.get(i).getAnamnese(),
+                this.lista.get(i).getDt(),
+                this.lista.get(i).getIdUser()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
@@ -159,7 +169,7 @@ public class RecordListForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(Patient patient) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -249,7 +259,7 @@ public class RecordListForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RecordListForm().setVisible(true);
+                new RecordListForm(patient).setVisible(true);
             }
         });
     }

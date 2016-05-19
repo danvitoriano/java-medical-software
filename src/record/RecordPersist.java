@@ -37,6 +37,7 @@ public class RecordPersist {
         bw.write(user.getId() + ";");
         bw.write(user.getAnamnese() + ";");
         bw.write(user.getDt() + ";");
+        bw.write(user.getIdUser() + ";");
         bw.write("\n");
         bw.close();
     }
@@ -47,19 +48,30 @@ public class RecordPersist {
      * @return
      * @throws java.io.FileNotFoundException
      */
-    public ArrayList<Record> readData() throws FileNotFoundException, IOException, Exception {
+    public ArrayList<Record> readData(String codPatient) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("records.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         ArrayList<Record> users = new ArrayList<>();
         String line = reader.readLine();
         while (line != null) {
             String[] params = line.split(";");
-            Record user = new Record();
-            user.setCpf(params[0]);
-            user.setId(params[1]);
-            user.setAnamnese(params[2]);
-            user.setDt(params[3]);
-            users.add(user);
+            String cpf = params[0];
+            String id = params[1];
+            String anamnese = params[2];
+            String dt = params[3];
+            String idUser = params[4];
+            
+            if(codPatient ==  null || id.equals(codPatient)){
+                Record record = new Record();
+                record.setCpf(cpf);
+                record.setId(id);
+                record.setAnamnese(anamnese);
+                record.setDt(dt);
+                record.setIdUser(idUser);
+                
+                users.add(record);
+            }
+            
             line = reader.readLine();
         }
         return users;
@@ -72,7 +84,7 @@ public class RecordPersist {
      * @throws java.io.FileNotFoundException
      */
     public void updateData(Record user) throws FileNotFoundException, IOException, Exception {
-        ArrayList<Record> users = readData();
+        ArrayList<Record> users = readData(null);
         ArrayList<String> newLines = new ArrayList<>();
         Record linha;
         String searchCpf = user.getCpf();
@@ -85,11 +97,13 @@ public class RecordPersist {
                 linha.setId(user.getId());
                 linha.setAnamnese(user.getAnamnese());
                 linha.setDt(user.getDt());
+                linha.setIdUser(user.getIdUser());
             }
             newLines.add(linha.getCpf() + ";"
                     + linha.getId() + ";"
                     + linha.getAnamnese() + ";"
-                    + linha.getDt() + ";\n");
+                    + linha.getDt() + ";"
+                    + linha.getIdUser() + ";\n");
         }
         try (FileOutputStream fileOut = new FileOutputStream("records.txt")) {
             for (String newLine : newLines) {
@@ -100,7 +114,7 @@ public class RecordPersist {
     }
     
     public String getCpf() throws Exception{
-        ArrayList<Record> cpfs = readData();
+        ArrayList<Record> cpfs = readData(null);
         int i = 1;
         for (Record users : cpfs) {
             int userCpf = Integer.parseInt(users.getCpf());

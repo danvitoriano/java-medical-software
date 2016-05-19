@@ -36,50 +36,11 @@ public class RecordRepo {
      * @return
      * @throws java.lang.Exception
      */
-    public ArrayList<Record> listAllUsers() throws Exception {
-        this.listUser = persistUser.readData();
+    public ArrayList<Record> listAllUsers(String id) throws Exception {
+        this.listUser = persistUser.readData(id);
         return this.listUser;
     }
 
-    /**
-     * return specific user
-     *
-     * @param cpf
-     * @return
-     * @throws java.lang.Exception
-     */
-    public  Record listUser(String cpf) throws Exception {
-        ArrayList<Record> listUsers;
-        listUsers = listAllUsers();
-        for (Record user : listUsers) {
-            if (user.getCpf().equals(cpf)){
-                return user;
-            }
-        } //        for (int i = 0; i < this.listUser.size(); i++) {
-//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-//                ret = i;
-//                break;
-//            }
-//        }
-        
-//        int ret = -1;
-//        for (int i = 0; i < this.listUser.size(); i++) {
-//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-//                ret = i;
-//                break;
-//            }
-//        }
-//        //this.listUser = persistUser.readData();
-//        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
-//        return this.listUser;
-        //return ret;
-        
-        //return this.listUser;
-        
-        //return ret;
-        return null;
-          
-    }
 
     /**
      * add an user
@@ -114,6 +75,12 @@ public class RecordRepo {
         }
         if (user.getAnamnese().trim().equals("")) {
             throw new Exception("c");
+        }
+        if (user.getIdUser() == null) {
+            throw new Exception("IdUser");
+        }
+        if (user.getIdUser().trim().equals("")) {
+            throw new Exception("IdUser");
         }
         if (this.ifExists(user) >= 0) {
             throw new Exception("User já cadastrado");
