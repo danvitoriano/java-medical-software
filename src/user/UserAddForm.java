@@ -5,7 +5,6 @@
  */
 package user;
 
-import user.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -172,7 +171,7 @@ public class UserAddForm extends javax.swing.JFrame {
             user.setPwd(jTextFieldSenha.getText());
             user.setActive(jTextFieldAtivo.getText());
             user.setProfile(jTextFieldTipo.getText());
-            UserRepo.obterInstancia().inserir(user);
+            UserRepo.getInstance().inserir(user);
             this.setVisible(false);
             this.dispose();
         }catch(Exception ex){

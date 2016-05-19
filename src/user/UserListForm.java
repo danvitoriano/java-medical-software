@@ -131,9 +131,9 @@ public class UserListForm extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Senha","Ativo","Tipo"});
         
-        UserRepo rep = UserRepo.obterInstancia();        
+        UserRepo rep = UserRepo.getInstance();        
         try {
-            this.lista = rep.listarTodos();
+            this.lista = rep.listAllUsers();
         } catch (Exception ex) {
             Logger.getLogger(UserListForm.class.getName()).log(Level.SEVERE, null, ex);
         }

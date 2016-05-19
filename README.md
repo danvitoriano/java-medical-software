@@ -3,6 +3,17 @@ Manage patient history and image diagnosis
 # java-medical-software
 Manage patient history and image diagnosis
 
+#package user
+*already done:*
+User.java
+UserPersist.java
+UserRepo.java
+UserAddForm.java
+UserEditForm.java
+UserListForm.java
+UserSearchForm.java
+
+
 Projeto  de  software  
 Premissas:  
 Não  serão  aceitas  soluções  sem  modularização;

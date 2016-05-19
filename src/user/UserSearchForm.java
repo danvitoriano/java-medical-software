@@ -91,7 +91,7 @@ public class UserSearchForm extends javax.swing.JFrame {
         try{
             User user = new User();
             user.setCpf(jTextFieldBuscar.getText());
-            int retorno = UserRepo.obterInstancia().searchCpf(user);
+            int retorno = UserRepo.getInstance().searchCpf(user);
             if (retorno != -1)
                  JOptionPane.showMessageDialog(null, retorno);                
             else

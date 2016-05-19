@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserPersist.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/User.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserEditForm.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserRepo.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserAddForm.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserListForm.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserSearchForm.java</file>
         </group>
     </open-files>
 </project-private>
