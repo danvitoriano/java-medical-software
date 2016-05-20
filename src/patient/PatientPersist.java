@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class PatientPersist {
 
     /**
-     * record an user
+     * patient an user
      *
      * @param user
      * @throws java.io.FileNotFoundException
@@ -61,6 +61,31 @@ public class PatientPersist {
             line = reader.readLine();
         }
         return users;
+    }
+    
+    public ArrayList<Patient> readData(String cpfPatient) throws FileNotFoundException, IOException, Exception {
+        InputStream input = new FileInputStream("patients.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        ArrayList<Patient> records = new ArrayList<>();
+        String line = reader.readLine();
+        while (line != null) {
+            String[] params = line.split(";");
+            String cpf = params[0];
+            String name = params[1];
+            String active = params[2];
+            
+            if(cpfPatient ==  null || cpf.equals(cpfPatient)){
+                Patient patient = new Patient();
+                patient.setCpf(cpf);
+                patient.setName(name);
+                patient.setActive(active);
+                
+                records.add(patient);
+            }
+            
+            line = reader.readLine();
+        }
+        return records;
     }
 
     /**

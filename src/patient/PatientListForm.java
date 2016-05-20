@@ -10,6 +10,7 @@ import patient.PatientRepo;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import record.RecordListForm;
 
@@ -19,12 +20,21 @@ import record.RecordListForm;
  */
 public class PatientListForm extends javax.swing.JFrame {
     private ArrayList<Patient> lista;
+    //private Patient patientCpf;
+    
 
     /**
      * Creates new form FormConsultaUser
      */
     public PatientListForm() {
         initComponents();
+        this.jButtonListarActionPerformed(null);
+    }
+    
+    public PatientListForm(Patient patient) {
+        initComponents();
+        jTextFieldBuscar.setText(patient.getCpf());
+        
         this.jButtonListarActionPerformed(null);
     }
 
@@ -44,6 +54,8 @@ public class PatientListForm extends javax.swing.JFrame {
         jButtonAlterarUsuario = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jTextFieldBuscar = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,6 +107,8 @@ public class PatientListForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("cpf");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,10 +124,14 @@ public class PatientListForm extends javax.swing.JFrame {
                         .addComponent(jButtonAlterarUsuario)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,13 +139,17 @@ public class PatientListForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonListar)
                     .addComponent(jButtonNovoUsuario)
                     .addComponent(jButtonAlterarUsuario)
-                    .addComponent(jButtonBuscar)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButtonBuscar))
                 .addContainerGap())
         );
 
@@ -166,8 +188,45 @@ public class PatientListForm extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        PatientSearchForm form = new PatientSearchForm();
-        form.show();
+//        PatientSearchForm form = new PatientSearchForm();
+//        form.show();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Ativo"});
+        
+        PatientRepo rep = PatientRepo.getInstance();        
+        //Patient patientCpf;
+      
+        Patient patientCpf = new Patient();
+          String patientCpfd = jTextFieldBuscar.getText();
+            //String ppp = patientCpf.getCpf(jTextFieldBuscar.getText());
+            
+        try {
+//            this.lista = rep.listAllUsers(this.jTextFieldBuscar.getText());
+                this.lista = rep.listAllUsers(patientCpfd);
+        } catch (Exception ex) {
+            Logger.getLogger(PatientListForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for(int i = 0; i < lista.size(); i++){
+            modelo.addRow(new Object[]{this.lista.get(i).getCpf(),this.lista.get(i).getName(),this.lista.get(i).getActive()});
+        }
+        jTable1.setModel(modelo);
+//        
+//        try{
+//            Patient patient = new Patient();
+//            patient.setCpf(jTextFieldBuscar.getText());
+//            int retorno = PatientRepo.getInstance().searchCpf(patient);
+//            if (retorno != -1)
+//                 JOptionPane.showMessageDialog(null, retorno);                
+//                
+//            else
+//                JOptionPane.showMessageDialog(null, "CPF não existe");
+////            this.setVisible(false);
+////            this.dispose();
+//        }catch(Exception ex){
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
+            
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -202,69 +261,7 @@ public class PatientListForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PatientListForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -280,7 +277,9 @@ public class PatientListForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonNovoUsuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }
