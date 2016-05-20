@@ -3,3 +3,4 @@
 3;3;anamnese 3;3;3;
 4;4;anamnese 4;1;4;
 5;5;anamnese 5;2;5;
+4;6;esta bem;2;1;

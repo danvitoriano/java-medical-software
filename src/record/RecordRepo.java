@@ -36,11 +36,10 @@ public class RecordRepo {
      * @return
      * @throws java.lang.Exception
      */
-    public ArrayList<Record> listAllUsers(String id) throws Exception {
-        this.listUser = persistUser.readData(id);
+    public ArrayList<Record> listAllUsers(String cpf) throws Exception {
+        this.listUser = persistUser.readData(cpf);
         return this.listUser;
     }
-
 
     /**
      * add an user
@@ -131,15 +130,15 @@ public class RecordRepo {
     }
 
     /**
-     * check if user exists
+     * check if id exists
      *
-     * @param user
+     * @param id
      * @return
      */
-    public int ifExists(Record user) {
+    public int ifExists(Record id) {
         int ret = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
-            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
+            if (id.getId().trim().equals(this.listUser.get(i).getId().trim())) {
                 ret = i;
                 break;
             }

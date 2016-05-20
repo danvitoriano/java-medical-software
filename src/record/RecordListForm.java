@@ -45,6 +45,7 @@ public class RecordListForm extends javax.swing.JFrame {
         jButtonNovoUsuario = new javax.swing.JButton();
         jButtonAlterarUsuario = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,24 +90,29 @@ public class RecordListForm extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("image");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonListar)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonNovoUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonAlterarUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonListar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonNovoUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAlterarUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +124,8 @@ public class RecordListForm extends javax.swing.JFrame {
                     .addComponent(jButtonListar)
                     .addComponent(jButtonNovoUsuario)
                     .addComponent(jButtonAlterarUsuario)
-                    .addComponent(jButtonBuscar))
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -265,6 +272,7 @@ public class RecordListForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlterarUsuario;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;

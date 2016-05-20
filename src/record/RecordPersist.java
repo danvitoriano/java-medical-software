@@ -24,34 +24,34 @@ import java.util.ArrayList;
 public class RecordPersist {
 
     /**
-     * record an user
+     * record an record
      *
-     * @param user
+     * @param record
      * @throws java.io.FileNotFoundException
      */
-    public void setData(Record user) throws FileNotFoundException, IOException {
+    public void setData(Record record) throws FileNotFoundException, IOException {
         OutputStream os = new FileOutputStream("records.txt", true);
         OutputStreamWriter osw = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osw);
-        bw.write(user.getCpf() + ";");
-        bw.write(user.getId() + ";");
-        bw.write(user.getAnamnese() + ";");
-        bw.write(user.getDt() + ";");
-        bw.write(user.getIdUser() + ";");
+        bw.write(record.getCpf() + ";");
+        bw.write(record.getId() + ";");
+        bw.write(record.getAnamnese() + ";");
+        bw.write(record.getDt() + ";");
+        bw.write(record.getIdUser() + ";");
         bw.write("\n");
         bw.close();
     }
 
     /**
-     * list all users
+     * list all records
      *
      * @return
      * @throws java.io.FileNotFoundException
      */
-    public ArrayList<Record> readData(String codPatient) throws FileNotFoundException, IOException, Exception {
+    public ArrayList<Record> readData(String cpfPatient) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("records.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        ArrayList<Record> users = new ArrayList<>();
+        ArrayList<Record> records = new ArrayList<>();
         String line = reader.readLine();
         while (line != null) {
             String[] params = line.split(";");
@@ -61,7 +61,7 @@ public class RecordPersist {
             String dt = params[3];
             String idUser = params[4];
             
-            if(codPatient ==  null || id.equals(codPatient)){
+            if(cpfPatient ==  null || cpf.equals(cpfPatient)){
                 Record record = new Record();
                 record.setCpf(cpf);
                 record.setId(id);
@@ -69,12 +69,12 @@ public class RecordPersist {
                 record.setDt(dt);
                 record.setIdUser(idUser);
                 
-                users.add(record);
+                records.add(record);
             }
             
             line = reader.readLine();
         }
-        return users;
+        return records;
     }
 
     /**
