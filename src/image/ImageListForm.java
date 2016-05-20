@@ -30,7 +30,9 @@ public class ImageListForm extends javax.swing.JFrame {
     private File imageUrl;
 
     /**
-     * Creates new form FormConsultaUser
+     * Record an image
+     * 
+     * @param record record an image
      */
     public ImageListForm(Record record) {
         initComponents();
@@ -236,8 +238,8 @@ public class ImageListForm extends javax.swing.JFrame {
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"id image","id record","url"});
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"id image","id record","url"});
         
         ImageRepo rep = ImageRepo.getInstance();        
         try {
@@ -247,9 +249,9 @@ public class ImageListForm extends javax.swing.JFrame {
         }
         
         for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getId(),this.lista.get(i).getIdRecord(),this.lista.get(i).getUrl()});
+            model.addRow(new Object[]{this.lista.get(i).getId(),this.lista.get(i).getIdRecord(),this.lista.get(i).getUrl()});
         }
-        jTable1.setModel(modelo);
+        jTable1.setModel(model);
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
@@ -260,8 +262,8 @@ public class ImageListForm extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"id image","id record","url"});
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"id image","id record","url"});
 
         ImageRepo rep = ImageRepo.getInstance();
         
@@ -275,9 +277,9 @@ public class ImageListForm extends javax.swing.JFrame {
         }
 
         for (int i = 0; i < lista.size(); i++) {
-            modelo.addRow(new Object[]{this.lista.get(i).getId(), this.lista.get(i).getIdRecord(), this.lista.get(i).getUrl()});
+            model.addRow(new Object[]{this.lista.get(i).getId(), this.lista.get(i).getIdRecord(), this.lista.get(i).getUrl()});
         }
-        jTable1.setModel(modelo);
+        jTable1.setModel(model);
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -299,20 +301,20 @@ public class ImageListForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         Image newImage = new Image();
         try {
-            newImage.setId(imagePersist.obterIdentificador());
+            newImage.setId(imagePersist.getIdentifier());
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        SimpleDateFormat dataFormato = new SimpleDateFormat("yyyyMMdd_HHmmss_");    
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss_");    
         Calendar cal = Calendar.getInstance();   
-        String dataHora = dataFormato.format(cal.getTime());
+        String dateTime = dateFormat.format(cal.getTime());
         newImage.setIdRecord(recordImage.getId());
         newImage.setId(this.jTextField2.getText());
 //        newImage.setDsDescricao(this.txtDescricaoImagem.getText());
-        newImage.setUrl(dataHora + imageUrl.getName());
+        newImage.setUrl(dateTime + imageUrl.getName());
         try {
             ImageRepo.getInstance().inserir(newImage);
-            ImageRepo.salvarImagem(imageUrl, dataHora);
+            ImageRepo.saveImage(imageUrl, dateTime);
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -322,22 +324,22 @@ public class ImageListForm extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Image imagemSelecionada = this.lista.get(jTable1.getSelectedRow());
-        String caminhoImagem = null;
+        Image selectedImage = this.lista.get(jTable1.getSelectedRow());
+        String imagePath = null;
         try {
-            caminhoImagem = diretorio.verificarDiretorio(null);
+            imagePath = diretorio.pathVerify(null);
         } catch (IOException ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        caminhoImagem = caminhoImagem + File.separator + imagemSelecionada.getUrl();
-        //Obtém a imagem com seu tamanho original
-        java.awt.Image immagemOriginal = new ImageIcon(caminhoImagem).getImage();
-        //Define as medidas proporcionais ao tamanho estipulado (500x465)
-        Dimension tamanhoCorrigido = ImageRepo
-                .obterDimensaoProporcional(immagemOriginal.getWidth(rootPane),immagemOriginal.getHeight(rootPane),500,465);
+        imagePath = imagePath + File.separator + selectedImage.getUrl();
+        //Get Original Image Size
+        java.awt.Image immagemOriginal = new ImageIcon(imagePath).getImage();
+        //Define proportinaly image (500x465)
+        Dimension resizedImage = ImageRepo
+                .getDimension(immagemOriginal.getWidth(rootPane),immagemOriginal.getHeight(rootPane),500,465);
         ImageIcon img = new ImageIcon(immagemOriginal
-                .getScaledInstance(tamanhoCorrigido.width, tamanhoCorrigido.height, 0));
-        //Atribui a imagem ao label para que seja exibida.
+                .getScaledInstance(resizedImage.width, resizedImage.height, 0));
+        //set the image to show
         lblImagem.setIcon(img);
     }//GEN-LAST:event_jButton3ActionPerformed
 

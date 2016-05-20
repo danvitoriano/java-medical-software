@@ -27,7 +27,7 @@ public class ImageRepo {
     /**
      * get or create ImageRepo
      *
-     * @return
+     * @return an ImageRepo Instance
      */
     public static ImageRepo getInstance() {
         if (instanceUserRep == null) {
@@ -39,8 +39,9 @@ public class ImageRepo {
     /**
      * return all users
      *
-     * @return
-     * @throws java.lang.Exception
+     * @param idRecord pass ID Record String
+     * @return return a list of user
+     * @throws java.lang.Exception User Data Error
      */
     public ArrayList<Image> listAllUsers(String idRecord) throws Exception {
         this.listUser = persistUser.readData(idRecord);
@@ -52,8 +53,8 @@ public class ImageRepo {
     /**
      * add an image
      *
-     * @param image
-     * @throws java.lang.Exception
+     * @param image pass image to insert
+     * @throws java.lang.Exception if Error to insert Image
      */
     public void inserir(Image image) throws Exception {
         if (image == null) {
@@ -84,8 +85,8 @@ public class ImageRepo {
     /**
      * update an user
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user update User
+     * @throws java.lang.Exception if error to update User
      */
     public void update(Image user) throws Exception {
         if (user == null) {
@@ -118,10 +119,10 @@ public class ImageRepo {
     }
 
     /**
-     * check if image exists
+     * Check If Image Exists
      *
-     * @param image
-     * @return
+     * @param image pass the image to verify
+     * @return return image id
      */
     public int ifExists(Image image) {
         int ret = -1;
@@ -134,9 +135,17 @@ public class ImageRepo {
         return ret;
     }
     
+    
     public class ImageFileFilter implements FileFilter {
         private final String[] okFileExtensions = new String[] {"jpg"};
 
+        /**
+        * Accept File
+        *
+        * @param file verify file to save
+        * @return if file has saved
+        */
+        @Override
         public boolean accept(File file){
             for (String extension : okFileExtensions) {
                 if (file.getName().toLowerCase().endsWith(extension)) {
@@ -147,62 +156,86 @@ public class ImageRepo {
         }
     }
     
-    public static void salvarImagem(File file, String dataHora) throws IOException{
+    /**
+    * Save Image
+    *
+    * @param file pass file to save
+    * @param time pass time to save
+    * @throws java.io.IOException Save Image Error
+    */
+    public static void saveImage(File file, String time) throws IOException{
         //String caminhoImagem = dataHora + file.getName();
-        String caminhoImagem = null;
+        String imagePath = null;
         try {
-            caminhoImagem = ImageSave.verificarDiretorio(null);
+            imagePath = ImageSave.pathVerify(null);
         } catch (IOException ex) {
             Logger.getLogger(ImageRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        caminhoImagem = dataHora + file.getName();
-        file.renameTo(new File(caminhoImagem));
+        imagePath = time + file.getName();
+        file.renameTo(new File(imagePath));
     }
     
+    /**
+    * CPF Search
+    *
+     * @param user pass user to search
+     * @return user id
+    */
     public int searchCpf(Image user) {
-        int retorno = -1;
+        int userID = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
             if (user.getId().trim().equals(this.listUser.get(i).getId().trim())) {
-                retorno = i;
+                userID = i;
                 break;
             }
         }
 //        JOptionPane.showMessageDialog(null, ret);
-        return retorno;
+        return userID;
     }
     
-    public static Dimension obterDimensaoProporcional(int imgWidth, int imgHeight, int maxWidth, int maxHeight) {
+    /**
+    * Get Image Dimension
+    *
+    * @param imgWidth image Width
+    * @param imgHeight image Height
+    * @param maxWidth image Max Width
+    * @param maxHeight image MAx Height
+    * @return new image dimension
+    */
+    public static Dimension getDimension(int imgWidth, int imgHeight, int maxWidth, int maxHeight) {
 
-        int originalWidth = imgWidth;
-        int originalHeight = imgHeight;
-        int maximoWidth = maxWidth;
-        int maximoHeight = maxHeight;
-        int novoWidth = originalWidth;
-        int novoHeight = originalHeight;
+        int newWidth = imgWidth;
+        int newHeight = imgHeight;
 
-        //Verifica se a largura original é maior que o máximo
-        if (originalWidth > maximoWidth) {
-            //Define a largura como o máximo permitido
-            novoWidth = maximoWidth;
-            //redefine proporcionalmente a altura máxima
-            novoHeight = (novoWidth * originalHeight) / originalWidth;
+        //Verify if original width is larger than maxWidth
+        if (imgWidth > maxWidth) {
+            //Define max width
+            newWidth = maxWidth;
+            //redefine max height proportionaly
+            newHeight = (newWidth * imgHeight) / imgWidth;
         }
 
-        //Verifica se a altura original é maior que o máximo
-        if (novoHeight > maximoHeight) {
-            //Define a altura como o máximo permitido
-            novoHeight = maximoHeight;
-            //redefine proporcionalmente a largura máxima
-            novoWidth = (novoHeight * originalWidth) / originalHeight;
+        //Verify if original height is larger than maxHeight
+        if (newHeight > maxHeight) {
+            //Define max height
+            newHeight = maxHeight;
+            //redefine max width proportionaly
+            newWidth = (newHeight * imgWidth) / imgHeight;
         }
-        //Retorna a dimensão máxima mantendo a proporcionalidade
-        return new Dimension(novoWidth, novoHeight);
+        //retunr the new image dimension
+        return new Dimension(newWidth, newHeight);
     }
-    
+    /**
+     * List All user
+     *
+     * @param id pass User ID String
+     * @param idRecord pass IdRecord String
+     * @return  return a list of image from this user
+     * @throws java.lang.Exception read data exception
+    */ 
     public ArrayList<Image> listAllUsers2(String id, String idRecord) throws Exception {
         this.listUser = persistUser.readData2(id,idRecord);
         return this.listUser;
     }
-
 
 }

@@ -39,6 +39,4 @@ public class Patient {
         this.active = active;
     }
 
-
-    
 }

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
  * @author Rafael
  */
 public class ImageSave {
-        public static String verificarDiretorio(String arquivo) throws IOException {
+        public static String pathVerify(String arquivo) throws IOException {
             String diretorio = new File("").getAbsolutePath();
             if(!Paths.get(diretorio).toFile().exists()) {
                 new File(diretorio).mkdir();

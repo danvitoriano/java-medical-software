@@ -26,8 +26,8 @@ public class PatientPersist {
     /**
      * patient an user
      *
-     * @param user
-     * @throws java.io.FileNotFoundException
+     * @param user pass user
+     * @throws java.io.FileNotFoundException file not found
      */
     public void setData(Patient user) throws FileNotFoundException, IOException {
         OutputStream os = new FileOutputStream("patients.txt", true);
@@ -43,8 +43,8 @@ public class PatientPersist {
     /**
      * list all users
      *
-     * @return
-     * @throws java.io.FileNotFoundException
+     * @return a list of patient
+     * @throws java.io.FileNotFoundException file not found
      */
     public ArrayList<Patient> readData() throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("patients.txt");
@@ -91,8 +91,8 @@ public class PatientPersist {
     /**
      * update an user
      *
-     * @param user
-     * @throws java.io.FileNotFoundException
+     * @param user pass user to be updated
+     * @throws java.io.FileNotFoundException file not found
      */
     public void updateData(Patient user) throws FileNotFoundException, IOException, Exception {
         ArrayList<Patient> users = readData();
@@ -120,6 +120,12 @@ public class PatientPersist {
         }
     }
     
+    /**
+     * Get CPF
+     *
+     * @return user CPF
+     * @throws java.io.FileNotFoundException file not found
+     */
     public String getCpf() throws Exception{
         ArrayList<Patient> cpfs = readData();
         int i = 1;

@@ -11,6 +11,7 @@ package image;
  */
 public class Image {
     
+    
     private String id, idRecord, url;
 
     public String getId() {
@@ -36,9 +37,5 @@ public class Image {
     public void setUrl(String url) {
         this.url = url;
     }
-
-
-
-
-    
+ 
 }

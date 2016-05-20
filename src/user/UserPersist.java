@@ -24,10 +24,10 @@ import java.util.ArrayList;
 public class UserPersist {
 
     /**
-     * record an user
+     * Record User
      *
-     * @param user
-     * @throws java.io.FileNotFoundException
+     * @param user pass user to be recorded
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public void setData(User user) throws FileNotFoundException, IOException {
         OutputStream os = new FileOutputStream("users.txt", true);
@@ -43,10 +43,10 @@ public class UserPersist {
     }
 
     /**
-     * list all users
+     * Return a List of Users
      *
-     * @return
-     * @throws java.io.FileNotFoundException
+     * @return return a list of User
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public ArrayList<User> readData() throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("users.txt");
@@ -68,10 +68,10 @@ public class UserPersist {
     }
 
     /**
-     * update an user
+     * Update Exist User
      *
-     * @param user
-     * @throws java.io.FileNotFoundException
+     * @param user pass user to be updated
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public void updateData(User user) throws FileNotFoundException, IOException, Exception {
         ArrayList<User> users = readData();
@@ -103,6 +103,12 @@ public class UserPersist {
         }
     }
     
+    /**
+     * Return User Row by CPF
+     *
+     * @return return user row position
+     * @throws java.lang.Exception User Exception
+     */
     public String getCpf() throws Exception{
         ArrayList<User> cpfs = readData();
         int i = 1;

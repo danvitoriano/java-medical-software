@@ -19,9 +19,9 @@ public class RecordRepo {
     RecordPersist persistUser = new RecordPersist();
 
     /**
-     * get or create RecordRepo
+     * Recordrepo Instance
      *
-     * @return
+     * @return return RecordRepo Instance
      */
     public static RecordRepo getInstance() {
         if (instanceUserRep == null) {
@@ -31,10 +31,11 @@ public class RecordRepo {
     }
 
     /**
-     * return all users
+     * Return List of Record
      *
-     * @return
-     * @throws java.lang.Exception
+     * @param cpf pass CPF
+     * @return the list of Record
+     * @throws java.lang.Exception Record Exception
      */
     public ArrayList<Record> listAllUsers(String cpf) throws Exception {
         this.listUser = persistUser.readData(cpf);
@@ -42,12 +43,12 @@ public class RecordRepo {
     }
 
     /**
-     * add an user
+     * Add User
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user pass user to be saved
+     * @throws java.lang.Exception User Exception
      */
-    public void inserir(Record user) throws Exception {
+    public void insert(Record user) throws Exception {
         if (user == null) {
             throw new Exception("User don't exist");
         }
@@ -88,10 +89,10 @@ public class RecordRepo {
     }
 
     /**
-     * update an user
+     * Update User
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user pass user to be updated
+     * @throws java.lang.Exception User Exception
      */
     public void update(Record user) throws Exception {
         if (user == null) {
@@ -130,33 +131,38 @@ public class RecordRepo {
     }
 
     /**
-     * check if id exists
+     * Check if Record Id exist
      *
-     * @param id
-     * @return
+     * @param id pass record id
+     * @return return if record exist (boolean)
      */
     public int ifExists(Record id) {
-        int ret = -1;
+        int recordId = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
             if (id.getId().trim().equals(this.listUser.get(i).getId().trim())) {
-                ret = i;
+                recordId = i;
                 break;
             }
         }
-        return ret;
+        return recordId;
     }
     
+    /**
+     * Check if User CPF exist in the User List
+     *
+     * @param user pass user obect
+     * @return return if user exist (boolean)
+     */
     public int searchCpf(Record user) {
-        int retorno = -1;
+        int rowRecord = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
             if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-                retorno = i;
+                rowRecord = i;
                 break;
             }
         }
 //        JOptionPane.showMessageDialog(null, ret);
-        return retorno;
+        return rowRecord;
     }
-
 
 }

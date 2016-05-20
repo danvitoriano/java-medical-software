@@ -19,9 +19,9 @@ public class UserRepo {
     UserPersist persistUser = new UserPersist();
 
     /**
-     * get or create UserRepo
+     * User Repository Instance
      *
-     * @return
+     * @return UserRepo Instance
      */
     public static UserRepo getInstance() {
         if (instanceUserRep == null) {
@@ -31,10 +31,10 @@ public class UserRepo {
     }
 
     /**
-     * return all users
+     * return a list of Users
      *
-     * @return
-     * @throws java.lang.Exception
+     * @return return list of user
+     * @throws java.lang.Exception User Exception
      */
     public ArrayList<User> listAllUsers() throws Exception {
         this.listUser = persistUser.readData();
@@ -42,11 +42,11 @@ public class UserRepo {
     }
 
     /**
-     * return specific user
+     * Return an User by CPF
      *
-     * @param cpf
-     * @return
-     * @throws java.lang.Exception
+     * @param cpf pass cpf 
+     * @return return an User 
+     * @throws java.lang.Exception user Exception
      */
     public  User listUser(String cpf) throws Exception {
         ArrayList<User> listUsers;
@@ -55,37 +55,15 @@ public class UserRepo {
             if (user.getCpf().equals(cpf)){
                 return user;
             }
-        } //        for (int i = 0; i < this.listUser.size(); i++) {
-//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-//                ret = i;
-//                break;
-//            }
-//        }
-        
-//        int ret = -1;
-//        for (int i = 0; i < this.listUser.size(); i++) {
-//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-//                ret = i;
-//                break;
-//            }
-//        }
-//        //this.listUser = persistUser.readData();
-//        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
-//        return this.listUser;
-        //return ret;
-        
-        //return this.listUser;
-        
-        //return ret;
+        } 
         return null;
-          
     }
 
     /**
-     * add an user
+     * Add User
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user pass a user to be recorded
+     * @throws java.lang.Exception User Exception
      */
     public void inserir(User user) throws Exception {
         if (user == null) {
@@ -128,10 +106,10 @@ public class UserRepo {
     }
 
     /**
-     * update an user
+     * Update Exist User
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user pass user to be updated
+     * @throws java.lang.Exception User Exception
      */
     public void update(User user) throws Exception {
         if (user == null) {
@@ -176,10 +154,10 @@ public class UserRepo {
     }
 
     /**
-     * check if user exists
+     * Check If User Exist
      *
-     * @param user
-     * @return
+     * @param user pass user to be verify if exist
+     * @return return a row position of user
      */
     public int ifExists(User user) {
         int ret = -1;
@@ -192,6 +170,12 @@ public class UserRepo {
         return ret;
     }
     
+    /**
+     * Search User by CPF
+     *
+     * @param user pass user to check by cpf
+     * @return return a row position of user
+     */
     public int searchCpf(User user) {
         int retorno = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
@@ -200,9 +184,7 @@ public class UserRepo {
                 break;
             }
         }
-//        JOptionPane.showMessageDialog(null, ret);
         return retorno;
     }
-
 
 }

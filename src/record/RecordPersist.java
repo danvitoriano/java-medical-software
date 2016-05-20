@@ -26,8 +26,8 @@ public class RecordPersist {
     /**
      * record an record
      *
-     * @param record
-     * @throws java.io.FileNotFoundException
+     * @param record pass Record to be saved
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public void setData(Record record) throws FileNotFoundException, IOException {
         OutputStream os = new FileOutputStream("records.txt", true);
@@ -43,10 +43,11 @@ public class RecordPersist {
     }
 
     /**
-     * list all records
+     * List All Records
      *
-     * @return
-     * @throws java.io.FileNotFoundException
+     * @param cpfPatient pass cpfPatient String
+     * @return list of Records
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public ArrayList<Record> readData(String cpfPatient) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("records.txt");
@@ -78,10 +79,10 @@ public class RecordPersist {
     }
 
     /**
-     * update an user
+     * Update An User
      *
-     * @param user
-     * @throws java.io.FileNotFoundException
+     * @param user pass user to be updated
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public void updateData(Record user) throws FileNotFoundException, IOException, Exception {
         ArrayList<Record> users = readData(null);

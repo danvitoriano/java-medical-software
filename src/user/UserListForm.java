@@ -8,6 +8,7 @@ package user;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -146,8 +147,13 @@ public class UserListForm extends javax.swing.JFrame {
 
     private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
         // TODO add your handling code here:
-        UserEditForm form = new UserEditForm(this.lista.get(jTable1.getSelectedRow()));
-        form.show();
+        int row = jTable1.getSelectedRow();
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "Selecione um usuário!");
+        }else{
+            UserEditForm form = new UserEditForm(this.lista.get(row));
+            form.show();
+        }
     }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed

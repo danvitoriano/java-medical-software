@@ -139,7 +139,7 @@ public class PatientAddForm extends javax.swing.JFrame {
             user.setCpf(jTextFieldCpf.getText());
             user.setName(jTextFieldNome.getText());
             user.setActive(jTextFieldAtivo.getText());
-            PatientRepo.getInstance().inserir(user);
+            PatientRepo.getInstance().insert(user);
             this.setVisible(false);
             this.dispose();
         }catch(Exception ex){
@@ -182,38 +182,6 @@ public class PatientAddForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PatientAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

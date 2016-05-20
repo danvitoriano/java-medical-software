@@ -21,7 +21,7 @@ public class PatientRepo {
     /**
      * get or create PatientRepo
      *
-     * @return
+     * @return Patient Instance
      */
     public static PatientRepo getInstance() {
         if (instanceUserRep == null) {
@@ -33,8 +33,8 @@ public class PatientRepo {
     /**
      * return all users
      *
-     * @return
-     * @throws java.lang.Exception
+     * @return list of Patient user
+     * @throws java.lang.Exception Patient Exception
      */
     public ArrayList<Patient> listAllUsers() throws Exception {
         this.listPatient = persistUser.readData();
@@ -44,9 +44,9 @@ public class PatientRepo {
     /**
      * return specific user
      *
-     * @param cpf
-     * @return
-     * @throws java.lang.Exception
+     * @param cpf pass cpf String
+     * @return Patient user
+     * @throws java.lang.Exception Patient Exception
      */
     public  Patient listUser(String cpf) throws Exception {
         ArrayList<Patient> listUsers;
@@ -84,10 +84,10 @@ public class PatientRepo {
     /**
      * add an user
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user pass user to be inserted
+     * @throws java.lang.Exception user Exception
      */
-    public void inserir(Patient user) throws Exception {
+    public void insert(Patient user) throws Exception {
         if (user == null) {
             throw new Exception("User don't exist");
         }
@@ -118,8 +118,8 @@ public class PatientRepo {
     /**
      * update an user
      *
-     * @param user
-     * @throws java.lang.Exception
+     * @param user user to be updated
+     * @throws java.lang.Exception user Exception
      */
     public void update(Patient user) throws Exception {
         if (user == null) {
@@ -152,39 +152,49 @@ public class PatientRepo {
     }
 
     /**
-     * check if user exists
+     * Check If User Exists by CPF
      *
-     * @param user
-     * @return
+     * @param user pass user to check if exist
+     * @return patient row position
      */
     public int ifExists(Patient user) {
-        int ret = -1;
+        int rowPatient = -1;
         for (int i = 0; i < this.listPatient.size(); i++) {
             if (user.getCpf().trim().equals(this.listPatient.get(i).getCpf().trim())) {
-                ret = i;
+                rowPatient = i;
                 break;
             }
         }
-        return ret;
+        return rowPatient;
     }
     
+    /**
+     * Search User by CPF
+     *
+     * @param user pass user to check if exist in the List
+     * @return Patient row position
+     */
     public int searchCpf(Patient user) {
-        int retorno = -1;
+        int rowPatient = -1;
         for (int i = 0; i < this.listPatient.size(); i++) {
             if (user.getCpf().trim().equals(this.listPatient.get(i).getCpf().trim())) {
-                retorno = i;
+                rowPatient = i;
                 break;
             }
         }
-//        JOptionPane.showMessageDialog(null, ret);
-        return retorno;
+        return rowPatient;
     }
     
-    
+    /**
+     * Search User by CPF
+     *
+     * @param cpf pass
+     * @return list of Patient
+     * @throws java.lang.Exception Patient Exception
+     */
     public ArrayList<Patient> listAllUsers(String cpf) throws Exception {
         this.listPatient = persistUser.readData(cpf);
         return this.listPatient;
     }
-
 
 }

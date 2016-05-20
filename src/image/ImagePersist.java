@@ -24,27 +24,28 @@ import java.util.ArrayList;
 public class ImagePersist {
 
     /**
-     * record an user
-     *
-     * @param user
-     * @throws java.io.FileNotFoundException
+     * @param user record an user
+     * @throws java.io.FileNotFoundException file not Found
+     * 
      */
     public void setData(Image user) throws FileNotFoundException, IOException {
         OutputStream os = new FileOutputStream("images.txt", true);
         OutputStreamWriter osw = new OutputStreamWriter(os);
-        BufferedWriter bw = new BufferedWriter(osw);
-        bw.write(user.getId() + ";");
-        bw.write(user.getIdRecord() + ";");
-        bw.write(user.getUrl() + ";");
-        bw.write("\n");
-        bw.close();
+        try (BufferedWriter bw = new BufferedWriter(osw)) {
+            bw.write(user.getId() + ";");
+            bw.write(user.getIdRecord() + ";");
+            bw.write(user.getUrl() + ";");
+            bw.write("\n");
+            bw.close();
+        }
     }
 
     /**
      * list all images
      *
-     * @return
-     * @throws java.io.FileNotFoundException
+     * @param imgIdRecord pass a imageRecord Object
+     * @return a list of images
+     * @throws java.io.FileNotFoundException File Not Found
      */
     public ArrayList<Image> readData(String imgIdRecord) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("images.txt");
@@ -75,11 +76,12 @@ public class ImagePersist {
     /**
      * list all images
      *
-     * @return
-     * @throws java.io.FileNotFoundException
+     * @param imgId Image Id String
+     * @param imgIdRecord Image Record String
+     * @return return an array of Image
+     * @throws java.io.FileNotFoundException Image Not Found
      */
     public ArrayList<Image> readData2(String imgId, String imgIdRecord) throws FileNotFoundException, IOException, Exception {
-        
         
         InputStream input = new FileInputStream("images.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -110,10 +112,10 @@ public class ImagePersist {
     
 
     /**
-     * update an image
+     * Update an Image
      *
-     * @param image
-     * @throws java.io.FileNotFoundException
+     * @param image update Image
+     * @throws java.io.FileNotFoundException File not Found
      */
     public void updateData(Image image) throws FileNotFoundException, IOException, Exception {
         ArrayList<Image> users = readData(null);
@@ -142,7 +144,7 @@ public class ImagePersist {
         }
     }
     
-    public String obterIdentificador() throws Exception{
+    public String getIdentifier() throws Exception{
         ArrayList<Image> records = readData(null);
         int i = 1;
         for (Image record : records) {
