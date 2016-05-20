@@ -5,6 +5,8 @@
  */
 package image;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 //import javax.swing.JOptionPane;
 
@@ -13,9 +15,9 @@ import java.util.ArrayList;
  * @author dvitoriano
  */
 public class ImageRepo {
-
     private ArrayList<Image> listUser;
     private static ImageRepo instanceUserRep;
+    public static javax.swing.filechooser.FileFilter ImageFileFilter;
     ImagePersist persistUser = new ImagePersist();
 
     /**
@@ -166,6 +168,19 @@ public class ImageRepo {
             }
         }
         return ret;
+    }
+    
+    public class ImageFileFilter implements FileFilter {
+        private final String[] okFileExtensions = new String[] {"jpg"};
+
+        public boolean accept(File file){
+            for (String extension : okFileExtensions) {
+                if (file.getName().toLowerCase().endsWith(extension)) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
     
     public int searchCpf(Image user) {
