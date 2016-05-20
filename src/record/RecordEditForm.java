@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  * @author vitoriano
  */
 public class RecordEditForm extends javax.swing.JFrame {
-    
+
     Record userEdit;
-    
-    public RecordEditForm(Record user){
+
+    public RecordEditForm(Record user) {
         initComponents();
         this.userEdit = user;
         jTextFieldCpf.setText(this.userEdit.getCpf());
@@ -171,8 +171,8 @@ public class RecordEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldAtivoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-                
-        try{
+
+        try {
             userEdit.setCpf(jTextFieldCpf.getText());
             userEdit.setId(jTextFieldNome.getText());
             userEdit.setAnamnese(jTextFieldSenha.getText());
@@ -181,7 +181,7 @@ public class RecordEditForm extends javax.swing.JFrame {
             rep.update(userEdit);
             JOptionPane.showMessageDialog(null, "User Alterado com sucesso");
             this.dispose();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed

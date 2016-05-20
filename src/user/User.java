@@ -10,7 +10,7 @@ package user;
  * @author vitoriano
  */
 public class User {
-    
+
     private String cpf, name, profile, active, pwd;
 
     public String getCpf() {
@@ -52,5 +52,5 @@ public class User {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-    
+
 }

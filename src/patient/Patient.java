@@ -10,7 +10,7 @@ package patient;
  * @author vitoriano
  */
 public class Patient {
-    
+
     private String cpf, name, active;
 
     public String getCpf() {
@@ -28,8 +28,6 @@ public class Patient {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     public String getActive() {
         return active;

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author vitoriano
  */
 public class UserListForm extends javax.swing.JFrame {
+
     private ArrayList<User> lista;
 
     /**
@@ -130,17 +131,17 @@ public class UserListForm extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Senha","Ativo","Tipo"});
-        
-        UserRepo rep = UserRepo.getInstance();        
+        modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Senha", "Ativo", "Tipo"});
+
+        UserRepo rep = UserRepo.getInstance();
         try {
             this.lista = rep.listAllUsers();
         } catch (Exception ex) {
             Logger.getLogger(UserListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(),this.lista.get(i).getName(),this.lista.get(i).getPwd(),this.lista.get(i).getActive(),this.lista.get(i).getProfile()});
+
+        for (int i = 0; i < lista.size(); i++) {
+            modelo.addRow(new Object[]{this.lista.get(i).getCpf(), this.lista.get(i).getName(), this.lista.get(i).getPwd(), this.lista.get(i).getActive(), this.lista.get(i).getProfile()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed

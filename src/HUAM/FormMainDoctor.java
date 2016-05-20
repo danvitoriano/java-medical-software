@@ -5,10 +5,7 @@
  */
 package HUAM;
 
-import user.UserListForm;
 import patient.PatientListForm;
-import record.RecordListForm;
-import image.ImageListForm;
 
 /**
  *

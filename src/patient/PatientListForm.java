@@ -5,12 +5,9 @@
  */
 package patient;
 
-import patient.Patient;
-import patient.PatientRepo;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import record.RecordListForm;
 
@@ -192,7 +189,7 @@ public class PatientListForm extends javax.swing.JFrame {
         modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Ativo"});
 
         PatientRepo rep = PatientRepo.getInstance();
-        
+
         String patientCpfd = jTextFieldBuscar.getText();
 
         try {

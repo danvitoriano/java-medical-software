@@ -10,7 +10,7 @@ package record;
  * @author vitoriano
  */
 public class Record {
-    
+
     private String cpf, id, anamnese, dt, idUser;
 
     public String getCpf() {
@@ -44,7 +44,7 @@ public class Record {
     public void setDt(String dt) {
         this.dt = dt;
     }
-    
+
     public String getIdUser() {
         return idUser;
     }
@@ -53,6 +53,4 @@ public class Record {
         this.idUser = idUser;
     }
 
-
-    
 }

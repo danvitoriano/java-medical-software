@@ -3,15 +3,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientAddForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/User.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserRepo.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormAuth.java</file>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMainTech.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMain.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserPersist.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/Patient.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageSave.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordEditForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordSearchForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordPersist.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserAddForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageSearchForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserListForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientRepo.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordAddForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/HUAM.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/Image.java</file>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageListForm.java</file>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientListFormTech.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageAddForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientEditForm.java</file>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientListForm.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageRepo.java</file>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMainDoctor.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormAuth.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageEditForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordRepo.java</file>
             <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImagePersist.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMain.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserEditForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientSearchForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageRepo.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/Record.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordListForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientPersist.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/user/UserSearchForm.java</file>
         </group>
     </open-files>
 </project-private>
