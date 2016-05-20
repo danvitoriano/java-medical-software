@@ -167,7 +167,7 @@ public class ImageRepo {
         //String caminhoImagem = dataHora + file.getName();
         String imagePath = null;
         try {
-            imagePath = ImageSave.pathVerify(null);
+            imagePath = ImageSave.pathVerify();
         } catch (IOException ex) {
             Logger.getLogger(ImageRepo.class.getName()).log(Level.SEVERE, null, ex);
         }

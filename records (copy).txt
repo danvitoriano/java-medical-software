@@ -1,6 +1,0 @@
-1;1;anamnese1;1;
-2;2;anamnese1;2;
-3;3;anamnese1;3;
-4;4;anamnese2;1;
-5;5;anamnese2;4;
-

@@ -1,9 +1,9 @@
 1;1;anamnese 1;1;1;
 2;2;anamnese 2;2;2;
-3;3;anamnese 3;3;3;
-4;4;anamnese 4;1;4;
-5;5;anamnese 5;2;5;
-4;6;esta bem;2;1;
-4;7;esta ainda melhor;3;1;
-4;8;como está bem!;3;2;
-4;9;linda;4;3;
+3;3;anamnese 3;2;3;
+4;4;anamnese 4;3;4;
+5;5;anamnese 5;4;5;
+6;6;anamnese 6;5;6;
+7;7;anamnese 7;5;2;
+8;8;anamnese 8;4;2;
+9;9;anamnese 9;1;2;

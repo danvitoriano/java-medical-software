@@ -327,7 +327,7 @@ public class ImageListForm extends javax.swing.JFrame {
         Image selectedImage = this.lista.get(jTable1.getSelectedRow());
         String imagePath = null;
         try {
-            imagePath = diretorio.pathVerify(null);
+            imagePath = diretorio.pathVerify();
         } catch (IOException ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
