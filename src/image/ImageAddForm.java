@@ -136,7 +136,7 @@ public class ImageAddForm extends javax.swing.JFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try{
             Image user = new Image();
-            user.setIdImage(jTextFieldCpf.getText());
+            user.setId(jTextFieldCpf.getText());
             user.setIdRecord(jTextFieldNome.getText());
             user.setUrl(jTextFieldSenha.getText());
             ImageRepo.getInstance().inserir(user);

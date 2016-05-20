@@ -18,7 +18,7 @@ public class ImageEditForm extends javax.swing.JFrame {
     public ImageEditForm(Image user){
         initComponents();
         this.userEdit = user;
-        jTextFieldCpf.setText(this.userEdit.getIdImage());
+        jTextFieldCpf.setText(this.userEdit.getId());
         jTextFieldNome.setText(this.userEdit.getIdRecord());
         jTextFieldSenha.setText(this.userEdit.getUrl());
     }
@@ -151,7 +151,7 @@ public class ImageEditForm extends javax.swing.JFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
                 
         try{
-            userEdit.setIdImage(jTextFieldCpf.getText());
+            userEdit.setId(jTextFieldCpf.getText());
             userEdit.setIdRecord(jTextFieldNome.getText());
             userEdit.setUrl(jTextFieldSenha.getText());
             ImageRepo rep = ImageRepo.getInstance();

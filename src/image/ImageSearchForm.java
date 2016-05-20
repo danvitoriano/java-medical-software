@@ -90,7 +90,7 @@ public class ImageSearchForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             Image user = new Image();
-            user.setIdImage(jTextFieldBuscar.getText());
+            user.setId(jTextFieldBuscar.getText());
             int retorno = ImageRepo.getInstance().searchCpf(user);
             if (retorno != -1)
                  JOptionPane.showMessageDialog(null, retorno);                

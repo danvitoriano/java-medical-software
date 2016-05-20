@@ -33,7 +33,7 @@ public class ImagePersist {
         OutputStream os = new FileOutputStream("images.txt", true);
         OutputStreamWriter osw = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osw);
-        bw.write(user.getIdImage() + ";");
+        bw.write(user.getId() + ";");
         bw.write(user.getIdRecord() + ";");
         bw.write(user.getUrl() + ";");
         bw.write("\n");
@@ -41,49 +41,59 @@ public class ImagePersist {
     }
 
     /**
-     * list all users
+     * list all images
      *
      * @return
      * @throws java.io.FileNotFoundException
      */
-    public ArrayList<Image> readData() throws FileNotFoundException, IOException, Exception {
+    public ArrayList<Image> readData(String codAnamnese) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("images.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        ArrayList<Image> users = new ArrayList<>();
+        ArrayList<Image> images = new ArrayList<>();
         String line = reader.readLine();
+        
         while (line != null) {
             String[] params = line.split(";");
-            Image user = new Image();
-            user.setIdImage(params[0]);
-            user.setIdRecord(params[1]);
-            user.setUrl(params[2]);
-            users.add(user);
+            String id = params[0];
+            String idRecord = params[1];
+            String url = params[2];
+            
+            if(codAnamnese == null || idRecord.equals(codAnamnese)){
+                Image image = new Image();
+                image.setId(id);
+                image.setIdRecord(idRecord);
+                image.setUrl(url);
+
+                images.add(image);
+            }
+            
             line = reader.readLine();
         }
-        return users;
+        return images;
     }
 
     /**
-     * update an user
+     * update an image
      *
-     * @param user
+     * @param image
      * @throws java.io.FileNotFoundException
      */
-    public void updateData(Image user) throws FileNotFoundException, IOException, Exception {
-        ArrayList<Image> users = readData();
+    public void updateData(Image image) throws FileNotFoundException, IOException, Exception {
+        ArrayList<Image> users = readData(null);
         ArrayList<String> newLines = new ArrayList<>();
         Image linha;
-        String searchCpf = user.getIdImage();
+        Integer buscar = Integer.parseInt(image.getId());
+//        String searchCpf = image.obterIdentificador();
         for (int i = 0; i < users.size(); i++) {
 
             linha = users.get(i);
 
-            if (linha.getIdImage().contains(searchCpf)) {
-                linha.setIdImage(user.getIdImage());
-                linha.setIdRecord(user.getIdRecord());
-                linha.setUrl(user.getUrl());
+            if (buscar == Integer.parseInt(linha.getId())) {
+                linha.setId(image.getId());
+                linha.setIdRecord(image.getIdRecord());
+                linha.setUrl(image.getUrl());
             }
-            newLines.add(linha.getIdImage() + ";"
+            newLines.add(linha.getId() + ";"
                     + linha.getIdRecord() + ";"
                     + linha.getUrl() + ";\n");
         }
@@ -95,13 +105,13 @@ public class ImagePersist {
         }
     }
     
-    public String getCpf() throws Exception{
-        ArrayList<Image> cpfs = readData();
+    public String obterIdentificador() throws Exception{
+        ArrayList<Image> records = readData(null);
         int i = 1;
-        for (Image users : cpfs) {
-            int userCpf = Integer.parseInt(users.getIdImage());
-            if (userCpf>i) {
-                i = userCpf + 1;
+        for (Image record : records) {
+            int id = Integer.parseInt(record.getId());
+            if (id>i) {
+                i = id + 1;
             }
         }
         return String.valueOf(i);

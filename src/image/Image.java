@@ -11,14 +11,14 @@ package image;
  */
 public class Image {
     
-    private String idImage, idRecord, url;
+    private String id, idRecord, url;
 
-    public String getIdImage() {
-        return idImage;
+    public String getId() {
+        return id;
     }
 
-    public void setIdImage(String idImage) {
-        this.idImage = idImage;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getIdRecord() {

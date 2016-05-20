@@ -7,7 +7,10 @@ package image;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import javax.swing.JOptionPane;
 
 /**
@@ -38,83 +41,45 @@ public class ImageRepo {
      * @return
      * @throws java.lang.Exception
      */
-    public ArrayList<Image> listAllUsers() throws Exception {
-        this.listUser = persistUser.readData();
+    public ArrayList<Image> listAllUsers(String idRecord) throws Exception {
+        this.listUser = persistUser.readData(idRecord);
         return this.listUser;
     }
 
-    /**
-     * return specific user
-     *
-     * @param cpf
-     * @return
-     * @throws java.lang.Exception
-     */
-    public  Image listUser(String cpf) throws Exception {
-        ArrayList<Image> listUsers;
-        listUsers = listAllUsers();
-        for (Image user : listUsers) {
-            if (user.getIdImage().equals(cpf)){
-                return user;
-            }
-        } //        for (int i = 0; i < this.listUser.size(); i++) {
-//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-//                ret = i;
-//                break;
-//            }
-//        }
-        
-//        int ret = -1;
-//        for (int i = 0; i < this.listUser.size(); i++) {
-//            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
-//                ret = i;
-//                break;
-//            }
-//        }
-//        //this.listUser = persistUser.readData();
-//        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
-//        return this.listUser;
-        //return ret;
-        
-        //return this.listUser;
-        
-        //return ret;
-        return null;
-          
-    }
+
 
     /**
-     * add an user
+     * add an image
      *
-     * @param user
+     * @param image
      * @throws java.lang.Exception
      */
-    public void inserir(Image user) throws Exception {
-        if (user == null) {
+    public void inserir(Image image) throws Exception {
+        if (image == null) {
             throw new Exception("User don't exist");
         }
-        if (user.getIdImage() == null) {
+        if (image.getId() == null) {
             throw new Exception("Informe o Cpf");
         }
-        if (user.getIdImage().trim().equals("")) {
+        if (image.getId().trim().equals("")) {
             throw new Exception("Informe o Cpf");
         }
-        if (user.getIdRecord() == null) {
+        if (image.getIdRecord() == null) {
             throw new Exception("Informe o nome");
         }
-        if (user.getIdRecord().trim().equals("")) {
+        if (image.getIdRecord().trim().equals("")) {
             throw new Exception("Informe o nome");
         }
-        if (user.getUrl() == null) {
+        if (image.getUrl() == null) {
             throw new Exception("Profile");
         }
-        if (user.getUrl().trim().equals("")) {
+        if (image.getUrl().trim().equals("")) {
             throw new Exception("c");
         }
-        if (this.ifExists(user) >= 0) {
+        if (this.ifExists(image) >= 0) {
             throw new Exception("User já cadastrado");
         }
-        persistUser.setData(user);
+        persistUser.setData(image);
     }
 
     /**
@@ -127,10 +92,10 @@ public class ImageRepo {
         if (user == null) {
             throw new Exception("User não existe");
         }
-        if (user.getIdImage() == null) {
+        if (user.getId() == null) {
             throw new Exception("Informe o Cpf");
         }
-        if (user.getIdImage().trim().equals("")) {
+        if (user.getId().trim().equals("")) {
             throw new Exception("Informe o Cpf");
         }
         if (user.getIdRecord() == null) {
@@ -154,15 +119,15 @@ public class ImageRepo {
     }
 
     /**
-     * check if user exists
+     * check if image exists
      *
-     * @param user
+     * @param image
      * @return
      */
-    public int ifExists(Image user) {
+    public int ifExists(Image image) {
         int ret = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
-            if (user.getIdImage().trim().equals(this.listUser.get(i).getIdImage().trim())) {
+            if (image.getId().trim().equals(this.listUser.get(i).getId().trim())) {
                 ret = i;
                 break;
             }
@@ -183,10 +148,16 @@ public class ImageRepo {
         }
     }
     
+    public static void salvarImagem(File file, String dataHora) throws IOException{
+        String caminhoImagem = null;
+        caminhoImagem = caminhoImagem + File.separator + dataHora + file.getName();
+        file.renameTo(new File(caminhoImagem));
+    }
+    
     public int searchCpf(Image user) {
         int retorno = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
-            if (user.getIdImage().trim().equals(this.listUser.get(i).getIdImage().trim())) {
+            if (user.getId().trim().equals(this.listUser.get(i).getId().trim())) {
                 retorno = i;
                 break;
             }
