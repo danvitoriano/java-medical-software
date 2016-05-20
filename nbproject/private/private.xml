@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/Record.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordListForm.java</file>
-            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/record/RecordRepo.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMainTech.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMain.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageListForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientListFormTech.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/patient/PatientListForm.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImageRepo.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormMainDoctor.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/HUAM/FormAuth.java</file>
+            <file>file:/home/vitoriano/NetBeansProjects/Huam/src/image/ImagePersist.java</file>
         </group>
     </open-files>
 </project-private>
