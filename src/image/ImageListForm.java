@@ -5,12 +5,15 @@
  */
 package image;
 
+import java.awt.Dimension;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import record.Record;
@@ -22,6 +25,7 @@ import record.Record;
 public class ImageListForm extends javax.swing.JFrame {
     public final Record recordImage;
     private ArrayList<Image> lista;
+    ImageSave diretorio = new ImageSave();
     ImagePersist imagePersist = new ImagePersist();
     private File imageUrl;
 
@@ -53,6 +57,9 @@ public class ImageListForm extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        lblImagem = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,7 +104,7 @@ public class ImageListForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Image");
+        jLabel1.setText("Image id");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +126,21 @@ public class ImageListForm extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("show image");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        lblImagem.setText("jLabel2");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,43 +148,53 @@ public class ImageListForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonListar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonNovoUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonAlterarUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonBuscar))
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImagem))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonListar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonNovoUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAlterarUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonBuscar)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblImagem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
                         .addComponent(jButton2))
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonListar)
                     .addComponent(jButtonNovoUsuario)
@@ -187,7 +219,7 @@ public class ImageListForm extends javax.swing.JFrame {
         
         ImageRepo rep = ImageRepo.getInstance();        
         try {
-            this.lista = rep.listAllUsers(recordImage.getAnamnese());
+            this.lista = rep.listAllUsers(recordImage.getId());
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -236,7 +268,8 @@ public class ImageListForm extends javax.swing.JFrame {
         SimpleDateFormat dataFormato = new SimpleDateFormat("yyyyMMdd_HHmmss_");    
         Calendar cal = Calendar.getInstance();   
         String dataHora = dataFormato.format(cal.getTime());
-        newImage.setIdRecord(recordImage.getAnamnese());
+        newImage.setIdRecord(recordImage.getId());
+        newImage.setId(this.jTextField2.getText());
 //        newImage.setDsDescricao(this.txtDescricaoImagem.getText());
         newImage.setUrl(dataHora + imageUrl.getName());
         try {
@@ -248,6 +281,31 @@ public class ImageListForm extends javax.swing.JFrame {
         this.jTextField1.setText(null);
         this.jButtonListarActionPerformed(null);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Image imagemSelecionada = this.lista.get(jTable1.getSelectedRow());
+        String caminhoImagem = null;
+        try {
+            caminhoImagem = diretorio.verificarDiretorio(null);
+        } catch (IOException ex) {
+            Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        caminhoImagem = caminhoImagem + File.separator + imagemSelecionada.getUrl();
+        //Obtém a imagem com seu tamanho original
+        java.awt.Image immagemOriginal = new ImageIcon(caminhoImagem).getImage();
+        //Define as medidas proporcionais ao tamanho estipulado (500x465)
+        Dimension tamanhoCorrigido = ImageRepo
+                .obterDimensaoProporcional(immagemOriginal.getWidth(rootPane),immagemOriginal.getHeight(rootPane),500,465);
+        ImageIcon img = new ImageIcon(immagemOriginal
+                .getScaledInstance(tamanhoCorrigido.width, tamanhoCorrigido.height, 0));
+        //Atribui a imagem ao label para que seja exibida.
+        lblImagem.setIcon(img);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +345,7 @@ public class ImageListForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAlterarUsuario;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;
@@ -295,5 +354,7 @@ public class ImageListForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblImagem;
     // End of variables declaration//GEN-END:variables
 }

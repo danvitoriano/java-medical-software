@@ -105,7 +105,7 @@ public class FormAuth extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user = jTextField1.getText();
         String pwd = jTextField2.getText();
-        if("1".equals(user) && "123".equals(pwd)){
+        if("".equals(user) && "".equals(pwd)){
             FormMain form = new FormMain();
             form.show();
             this.setVisible(false);

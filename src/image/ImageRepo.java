@@ -5,6 +5,7 @@
  */
 package image;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -76,9 +77,7 @@ public class ImageRepo {
         if (image.getUrl().trim().equals("")) {
             throw new Exception("c");
         }
-        if (this.ifExists(image) >= 0) {
-            throw new Exception("User já cadastrado");
-        }
+        
         persistUser.setData(image);
     }
 
@@ -149,8 +148,14 @@ public class ImageRepo {
     }
     
     public static void salvarImagem(File file, String dataHora) throws IOException{
+        //String caminhoImagem = dataHora + file.getName();
         String caminhoImagem = null;
-        caminhoImagem = caminhoImagem + File.separator + dataHora + file.getName();
+        try {
+            caminhoImagem = ImageSave.verificarDiretorio(null);
+        } catch (IOException ex) {
+            Logger.getLogger(ImageRepo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        caminhoImagem = dataHora + file.getName();
         file.renameTo(new File(caminhoImagem));
     }
     
@@ -164,6 +169,34 @@ public class ImageRepo {
         }
 //        JOptionPane.showMessageDialog(null, ret);
         return retorno;
+    }
+    
+    public static Dimension obterDimensaoProporcional(int imgWidth, int imgHeight, int maxWidth, int maxHeight) {
+
+        int originalWidth = imgWidth;
+        int originalHeight = imgHeight;
+        int maximoWidth = maxWidth;
+        int maximoHeight = maxHeight;
+        int novoWidth = originalWidth;
+        int novoHeight = originalHeight;
+
+        //Verifica se a largura original é maior que o máximo
+        if (originalWidth > maximoWidth) {
+            //Define a largura como o máximo permitido
+            novoWidth = maximoWidth;
+            //redefine proporcionalmente a altura máxima
+            novoHeight = (novoWidth * originalHeight) / originalWidth;
+        }
+
+        //Verifica se a altura original é maior que o máximo
+        if (novoHeight > maximoHeight) {
+            //Define a altura como o máximo permitido
+            novoHeight = maximoHeight;
+            //redefine proporcionalmente a largura máxima
+            novoWidth = (novoHeight * originalWidth) / originalHeight;
+        }
+        //Retorna a dimensão máxima mantendo a proporcionalidade
+        return new Dimension(novoWidth, novoHeight);
     }
 
 
