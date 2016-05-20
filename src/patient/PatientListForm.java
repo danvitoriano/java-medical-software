@@ -19,9 +19,9 @@ import record.RecordListForm;
  * @author vitoriano
  */
 public class PatientListForm extends javax.swing.JFrame {
+
     private ArrayList<Patient> lista;
     //private Patient patientCpf;
-    
 
     /**
      * Creates new form FormConsultaUser
@@ -30,11 +30,11 @@ public class PatientListForm extends javax.swing.JFrame {
         initComponents();
         this.jButtonListarActionPerformed(null);
     }
-    
+
     public PatientListForm(Patient patient) {
         initComponents();
         jTextFieldBuscar.setText(patient.getCpf());
-        
+
         this.jButtonListarActionPerformed(null);
     }
 
@@ -165,17 +165,17 @@ public class PatientListForm extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Ativo"});
-        
-        PatientRepo rep = PatientRepo.getInstance();        
+        modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Ativo"});
+
+        PatientRepo rep = PatientRepo.getInstance();
         try {
             this.lista = rep.listAllUsers();
         } catch (Exception ex) {
             Logger.getLogger(PatientListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(),this.lista.get(i).getName(),this.lista.get(i).getActive()});
+
+        for (int i = 0; i < lista.size(); i++) {
+            modelo.addRow(new Object[]{this.lista.get(i).getCpf(), this.lista.get(i).getName(), this.lista.get(i).getActive()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
@@ -188,45 +188,25 @@ public class PatientListForm extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-//        PatientSearchForm form = new PatientSearchForm();
-//        form.show();
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Nome","Ativo"});
+        modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Ativo"});
+
+        PatientRepo rep = PatientRepo.getInstance();
         
-        PatientRepo rep = PatientRepo.getInstance();        
-        //Patient patientCpf;
-      
-        Patient patientCpf = new Patient();
-          String patientCpfd = jTextFieldBuscar.getText();
-            //String ppp = patientCpf.getCpf(jTextFieldBuscar.getText());
-            
+        String patientCpfd = jTextFieldBuscar.getText();
+
         try {
-//            this.lista = rep.listAllUsers(this.jTextFieldBuscar.getText());
-                this.lista = rep.listAllUsers(patientCpfd);
+            this.lista = rep.listAllUsers(patientCpfd);
         } catch (Exception ex) {
             Logger.getLogger(PatientListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(),this.lista.get(i).getName(),this.lista.get(i).getActive()});
+
+        for (int i = 0; i < lista.size(); i++) {
+            modelo.addRow(new Object[]{this.lista.get(i).getCpf(), this.lista.get(i).getName(), this.lista.get(i).getActive()});
         }
         jTable1.setModel(modelo);
 //        
-//        try{
-//            Patient patient = new Patient();
-//            patient.setCpf(jTextFieldBuscar.getText());
-//            int retorno = PatientRepo.getInstance().searchCpf(patient);
-//            if (retorno != -1)
-//                 JOptionPane.showMessageDialog(null, retorno);                
-//                
-//            else
-//                JOptionPane.showMessageDialog(null, "CPF não existe");
-////            this.setVisible(false);
-////            this.dispose();
-//        }catch(Exception ex){
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
-//        }
-            
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

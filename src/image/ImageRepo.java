@@ -198,6 +198,11 @@ public class ImageRepo {
         //Retorna a dimensão máxima mantendo a proporcionalidade
         return new Dimension(novoWidth, novoHeight);
     }
+    
+    public ArrayList<Image> listAllUsers2(String id) throws Exception {
+        this.listUser = persistUser.readData2(id);
+        return this.listUser;
+    }
 
 
 }

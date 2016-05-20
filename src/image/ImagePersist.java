@@ -46,7 +46,7 @@ public class ImagePersist {
      * @return
      * @throws java.io.FileNotFoundException
      */
-    public ArrayList<Image> readData(String codAnamnese) throws FileNotFoundException, IOException, Exception {
+    public ArrayList<Image> readData(String imgIdRecord) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("images.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         ArrayList<Image> images = new ArrayList<>();
@@ -58,7 +58,7 @@ public class ImagePersist {
             String idRecord = params[1];
             String url = params[2];
             
-            if(codAnamnese == null || idRecord.equals(codAnamnese)){
+            if(imgIdRecord == null || idRecord.equals(imgIdRecord)){
                 Image image = new Image();
                 image.setId(id);
                 image.setIdRecord(idRecord);
@@ -71,6 +71,43 @@ public class ImagePersist {
         }
         return images;
     }
+    
+    /**
+     * list all images
+     *
+     * @return
+     * @throws java.io.FileNotFoundException
+     */
+    public ArrayList<Image> readData2(String imgId) throws FileNotFoundException, IOException, Exception {
+        
+        
+        InputStream input = new FileInputStream("images.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        ArrayList<Image> images = new ArrayList<>();
+        String line = reader.readLine();
+        
+        while (line != null) {
+            String[] params = line.split(";");
+            String id = params[0];
+            String idRecord = params[1];
+            String url = params[2];
+            
+            if(imgId == null || id.equals(imgId)){
+                Image image = new Image();
+                image.setId(id);
+                image.setIdRecord(idRecord);
+                image.setUrl(url);
+
+                images.add(image);
+            }
+            
+            line = reader.readLine();
+        }
+        return images;
+    }
+    
+    
+    
 
     /**
      * update an image
