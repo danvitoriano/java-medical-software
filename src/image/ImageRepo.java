@@ -199,8 +199,8 @@ public class ImageRepo {
         return new Dimension(novoWidth, novoHeight);
     }
     
-    public ArrayList<Image> listAllUsers2(String id) throws Exception {
-        this.listUser = persistUser.readData2(id);
+    public ArrayList<Image> listAllUsers2(String id, String idRecord) throws Exception {
+        this.listUser = persistUser.readData2(id,idRecord);
         return this.listUser;
     }
 

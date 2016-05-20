@@ -78,7 +78,7 @@ public class ImagePersist {
      * @return
      * @throws java.io.FileNotFoundException
      */
-    public ArrayList<Image> readData2(String imgId) throws FileNotFoundException, IOException, Exception {
+    public ArrayList<Image> readData2(String imgId, String imgIdRecord) throws FileNotFoundException, IOException, Exception {
         
         
         InputStream input = new FileInputStream("images.txt");
@@ -92,7 +92,7 @@ public class ImagePersist {
             String idRecord = params[1];
             String url = params[2];
             
-            if(imgId == null || id.equals(imgId)){
+            if(imgId == null || (id.equals(imgId) && idRecord.equals(imgIdRecord))){
                 Image image = new Image();
                 image.setId(id);
                 image.setIdRecord(idRecord);
