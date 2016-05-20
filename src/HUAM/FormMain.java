@@ -111,7 +111,8 @@ public class FormMain extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        RecordListForm form = new RecordListForm();
+        // RecordListForm form = new RecordListForm();
+        PatientListForm form = new PatientListForm();
         form.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
