@@ -5,23 +5,29 @@
  */
 package image;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import record.Record;
 
 /**
  *
  * @author vitoriano
  */
 public class ImageListForm extends javax.swing.JFrame {
+    public final Record recordImage;
     private ArrayList<Image> lista;
+    ImagePersist imagePersist = new ImagePersist();
+    private File imageUrl;
 
     /**
      * Creates new form FormConsultaUser
      */
-    public ImageListForm() {
+    public ImageListForm(Record record) {
         initComponents();
+        recordImage = record;
         this.jButtonListarActionPerformed(null);
     }
 
@@ -441,7 +447,7 @@ public class ImageListForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ImageListForm().setVisible(true);
+                new ImageListForm(null).setVisible(true);
             }
         });
     }

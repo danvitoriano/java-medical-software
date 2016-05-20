@@ -5,6 +5,7 @@
  */
 package record;
 
+import image.ImageListForm;
 import record.Record;
 import patient.Patient;
 import record.RecordRepo;
@@ -91,6 +92,11 @@ public class RecordListForm extends javax.swing.JFrame {
         });
 
         jButton1.setText("image");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +178,12 @@ public class RecordListForm extends javax.swing.JFrame {
         RecordSearchForm form = new RecordSearchForm();
         form.show();
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ImageListForm form = new ImageListForm(this.lista.get(jTable1.getSelectedRow()));
+        form.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
