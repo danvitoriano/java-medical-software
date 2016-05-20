@@ -88,17 +88,18 @@ public class ImageSearchForm extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             Image user = new Image();
             user.setId(jTextFieldBuscar.getText());
             int retorno = ImageRepo.getInstance().searchCpf(user);
-            if (retorno != -1)
-                 JOptionPane.showMessageDialog(null, retorno);                
-            else
+            if (retorno != -1) {
+                JOptionPane.showMessageDialog(null, retorno);
+            } else {
                 JOptionPane.showMessageDialog(null, "CPF não existe");
+            }
 //            this.setVisible(false);
 //            this.dispose();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed

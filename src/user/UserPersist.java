@@ -102,13 +102,13 @@ public class UserPersist {
             fileOut.close();
         }
     }
-    
-    public String getCpf() throws Exception{
+
+    public String getCpf() throws Exception {
         ArrayList<User> cpfs = readData();
         int i = 1;
         for (User users : cpfs) {
             int userCpf = Integer.parseInt(users.getCpf());
-            if (userCpf>i) {
+            if (userCpf > i) {
                 i = userCpf + 1;
             }
         }

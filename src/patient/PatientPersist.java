@@ -62,7 +62,7 @@ public class PatientPersist {
         }
         return users;
     }
-    
+
     public ArrayList<Patient> readData(String cpfPatient) throws FileNotFoundException, IOException, Exception {
         InputStream input = new FileInputStream("patients.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -73,16 +73,16 @@ public class PatientPersist {
             String cpf = params[0];
             String name = params[1];
             String active = params[2];
-            
-            if(cpfPatient ==  null || cpf.equals(cpfPatient)){
+
+            if (cpfPatient == null || cpf.equals(cpfPatient)) {
                 Patient patient = new Patient();
                 patient.setCpf(cpf);
                 patient.setName(name);
                 patient.setActive(active);
-                
+
                 records.add(patient);
             }
-            
+
             line = reader.readLine();
         }
         return records;
@@ -119,13 +119,13 @@ public class PatientPersist {
             fileOut.close();
         }
     }
-    
-    public String getCpf() throws Exception{
+
+    public String getCpf() throws Exception {
         ArrayList<Patient> cpfs = readData();
         int i = 1;
         for (Patient users : cpfs) {
             int userCpf = Integer.parseInt(users.getCpf());
-            if (userCpf>i) {
+            if (userCpf > i) {
                 i = userCpf + 1;
             }
         }

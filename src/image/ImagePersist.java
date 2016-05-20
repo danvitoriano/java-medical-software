@@ -43,6 +43,7 @@ public class ImagePersist {
     /**
      * list all images
      *
+     * @param imgIdRecord
      * @return
      * @throws java.io.FileNotFoundException
      */
@@ -51,14 +52,14 @@ public class ImagePersist {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         ArrayList<Image> images = new ArrayList<>();
         String line = reader.readLine();
-        
+
         while (line != null) {
             String[] params = line.split(";");
             String id = params[0];
             String idRecord = params[1];
             String url = params[2];
-            
-            if(imgIdRecord == null || idRecord.equals(imgIdRecord)){
+
+            if (imgIdRecord == null || idRecord.equals(imgIdRecord)) {
                 Image image = new Image();
                 image.setId(id);
                 image.setIdRecord(idRecord);
@@ -66,33 +67,34 @@ public class ImagePersist {
 
                 images.add(image);
             }
-            
+
             line = reader.readLine();
         }
         return images;
     }
-    
+
     /**
      * list all images
      *
+     * @param imgId
+     * @param imgIdRecord
      * @return
      * @throws java.io.FileNotFoundException
      */
     public ArrayList<Image> readData2(String imgId, String imgIdRecord) throws FileNotFoundException, IOException, Exception {
-        
-        
+
         InputStream input = new FileInputStream("images.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         ArrayList<Image> images = new ArrayList<>();
         String line = reader.readLine();
-        
+
         while (line != null) {
             String[] params = line.split(";");
             String id = params[0];
             String idRecord = params[1];
             String url = params[2];
-            
-            if(imgId == null || (id.equals(imgId) && idRecord.equals(imgIdRecord))){
+
+            if (imgId == null || (id.equals(imgId) && idRecord.equals(imgIdRecord))) {
                 Image image = new Image();
                 image.setId(id);
                 image.setIdRecord(idRecord);
@@ -100,14 +102,11 @@ public class ImagePersist {
 
                 images.add(image);
             }
-            
+
             line = reader.readLine();
         }
         return images;
     }
-    
-    
-    
 
     /**
      * update an image
@@ -141,13 +140,13 @@ public class ImagePersist {
             fileOut.close();
         }
     }
-    
-    public String obterIdentificador() throws Exception{
+
+    public String obterIdentificador() throws Exception {
         ArrayList<Image> records = readData(null);
         int i = 1;
         for (Image record : records) {
             int id = Integer.parseInt(record.getId());
-            if (id>i) {
+            if (id > i) {
                 i = id + 1;
             }
         }

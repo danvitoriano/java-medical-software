@@ -94,17 +94,18 @@ public class PatientSearchForm extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             Patient user = new Patient();
             user.setCpf(jTextFieldBuscar.getText());
             int retorno = PatientRepo.getInstance().searchCpf(user);
-            if (retorno != -1)
-                 JOptionPane.showMessageDialog(null, retorno);                
-            else
+            if (retorno != -1) {
+                JOptionPane.showMessageDialog(null, retorno);
+            } else {
                 JOptionPane.showMessageDialog(null, "CPF não existe");
+            }
 //            this.setVisible(false);
 //            this.dispose();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed

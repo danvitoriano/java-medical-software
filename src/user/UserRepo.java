@@ -48,11 +48,11 @@ public class UserRepo {
      * @return
      * @throws java.lang.Exception
      */
-    public  User listUser(String cpf) throws Exception {
+    public User listUser(String cpf) throws Exception {
         ArrayList<User> listUsers;
         listUsers = listAllUsers();
         for (User user : listUsers) {
-            if (user.getCpf().equals(cpf)){
+            if (user.getCpf().equals(cpf)) {
                 return user;
             }
         } //        for (int i = 0; i < this.listUser.size(); i++) {
@@ -61,7 +61,7 @@ public class UserRepo {
 //                break;
 //            }
 //        }
-        
+
 //        int ret = -1;
 //        for (int i = 0; i < this.listUser.size(); i++) {
 //            if (user.getCpf().trim().equals(this.listUser.get(i).getCpf().trim())) {
@@ -73,12 +73,10 @@ public class UserRepo {
 //        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
 //        return this.listUser;
         //return ret;
-        
         //return this.listUser;
-        
         //return ret;
         return null;
-          
+
     }
 
     /**
@@ -172,7 +170,7 @@ public class UserRepo {
         }
         persistUser.updateData(user);
 
-        this.listUser.set(this.ifExists(user), user);   
+        this.listUser.set(this.ifExists(user), user);
     }
 
     /**
@@ -191,7 +189,7 @@ public class UserRepo {
         }
         return ret;
     }
-    
+
     public int searchCpf(User user) {
         int retorno = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
@@ -203,6 +201,5 @@ public class UserRepo {
 //        JOptionPane.showMessageDialog(null, ret);
         return retorno;
     }
-
 
 }

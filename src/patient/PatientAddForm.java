@@ -134,7 +134,7 @@ public class PatientAddForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        try{
+        try {
             Patient user = new Patient();
             user.setCpf(jTextFieldCpf.getText());
             user.setName(jTextFieldNome.getText());
@@ -142,7 +142,7 @@ public class PatientAddForm extends javax.swing.JFrame {
             PatientRepo.getInstance().inserir(user);
             this.setVisible(false);
             this.dispose();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed

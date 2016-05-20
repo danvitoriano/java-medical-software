@@ -33,6 +33,7 @@ public class RecordRepo {
     /**
      * return all users
      *
+     * @param cpf
      * @return
      * @throws java.lang.Exception
      */
@@ -126,7 +127,7 @@ public class RecordRepo {
         }
         persistUser.updateData(user);
 
-        this.listUser.set(this.ifExists(user), user);   
+        this.listUser.set(this.ifExists(user), user);
     }
 
     /**
@@ -145,7 +146,7 @@ public class RecordRepo {
         }
         return ret;
     }
-    
+
     public int searchCpf(Record user) {
         int retorno = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
@@ -157,6 +158,5 @@ public class RecordRepo {
 //        JOptionPane.showMessageDialog(null, ret);
         return retorno;
     }
-
 
 }

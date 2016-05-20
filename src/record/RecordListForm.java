@@ -6,9 +6,7 @@
 package record;
 
 import image.ImageListForm;
-import record.Record;
 import patient.Patient;
-import record.RecordRepo;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,11 +17,13 @@ import javax.swing.table.DefaultTableModel;
  * @author vitoriano
  */
 public class RecordListForm extends javax.swing.JFrame {
+
     private ArrayList<Record> lista;
     private final Patient patientRecord;
 
     /**
      * Creates new form FormConsultaUser
+     * @param patient
      */
     public RecordListForm(Patient patient) {
         initComponents();
@@ -147,16 +147,16 @@ public class RecordListForm extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"CPF","Id","Anamnese","Data","idUser"});
-        
-        RecordRepo rep = RecordRepo.getInstance();        
+        modelo.setColumnIdentifiers(new String[]{"CPF", "Id", "Anamnese", "Data", "idUser"});
+
+        RecordRepo rep = RecordRepo.getInstance();
         try {
             this.lista = rep.listAllUsers(patientRecord.getCpf());
         } catch (Exception ex) {
             Logger.getLogger(RecordListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i = 0; i < lista.size(); i++){
+
+        for (int i = 0; i < lista.size(); i++) {
             modelo.addRow(new Object[]{
                 this.lista.get(i).getCpf(),
                 this.lista.get(i).getId(),
@@ -186,6 +186,7 @@ public class RecordListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
+     * @param patient
      * @param args the command line arguments
      */
     public static void main(Patient patient) {

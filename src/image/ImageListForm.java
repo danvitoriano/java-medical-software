@@ -23,6 +23,7 @@ import record.Record;
  * @author vitoriano
  */
 public class ImageListForm extends javax.swing.JFrame {
+
     public final Record recordImage;
     private ArrayList<Image> lista;
     ImageSave diretorio = new ImageSave();
@@ -31,12 +32,13 @@ public class ImageListForm extends javax.swing.JFrame {
 
     /**
      * Creates new form FormConsultaUser
+     * @param record
      */
     public ImageListForm(Record record) {
         initComponents();
         jTextField4.setText(record.getId());
         recordImage = record;
-        
+
         this.jButtonListarActionPerformed(null);
     }
 
@@ -237,17 +239,17 @@ public class ImageListForm extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"id image","id record","url"});
-        
-        ImageRepo rep = ImageRepo.getInstance();        
+        modelo.setColumnIdentifiers(new String[]{"id image", "id record", "url"});
+
+        ImageRepo rep = ImageRepo.getInstance();
         try {
             this.lista = rep.listAllUsers(recordImage.getId());
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i = 0; i < lista.size(); i++){
-            modelo.addRow(new Object[]{this.lista.get(i).getId(),this.lista.get(i).getIdRecord(),this.lista.get(i).getUrl()});
+
+        for (int i = 0; i < lista.size(); i++) {
+            modelo.addRow(new Object[]{this.lista.get(i).getId(), this.lista.get(i).getIdRecord(), this.lista.get(i).getUrl()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
@@ -261,10 +263,10 @@ public class ImageListForm extends javax.swing.JFrame {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"id image","id record","url"});
+        modelo.setColumnIdentifiers(new String[]{"id image", "id record", "url"});
 
         ImageRepo rep = ImageRepo.getInstance();
-        
+
         String imageIdd = jTextField3.getText();
         int imgStr = 1;
 
@@ -303,8 +305,8 @@ public class ImageListForm extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        SimpleDateFormat dataFormato = new SimpleDateFormat("yyyyMMdd_HHmmss_");    
-        Calendar cal = Calendar.getInstance();   
+        SimpleDateFormat dataFormato = new SimpleDateFormat("yyyyMMdd_HHmmss_");
+        Calendar cal = Calendar.getInstance();
         String dataHora = dataFormato.format(cal.getTime());
         newImage.setIdRecord(recordImage.getId());
         newImage.setId(this.jTextField2.getText());
@@ -334,7 +336,7 @@ public class ImageListForm extends javax.swing.JFrame {
         java.awt.Image immagemOriginal = new ImageIcon(caminhoImagem).getImage();
         //Define as medidas proporcionais ao tamanho estipulado (500x465)
         Dimension tamanhoCorrigido = ImageRepo
-                .obterDimensaoProporcional(immagemOriginal.getWidth(rootPane),immagemOriginal.getHeight(rootPane),500,465);
+                .obterDimensaoProporcional(immagemOriginal.getWidth(rootPane), immagemOriginal.getHeight(rootPane), 500, 465);
         ImageIcon img = new ImageIcon(immagemOriginal
                 .getScaledInstance(tamanhoCorrigido.width, tamanhoCorrigido.height, 0));
         //Atribui a imagem ao label para que seja exibida.
@@ -378,7 +380,7 @@ public class ImageListForm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ImageListForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

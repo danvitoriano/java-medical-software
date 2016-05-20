@@ -48,11 +48,11 @@ public class PatientRepo {
      * @return
      * @throws java.lang.Exception
      */
-    public  Patient listUser(String cpf) throws Exception {
+    public Patient listUser(String cpf) throws Exception {
         ArrayList<Patient> listUsers;
         listUsers = listAllUsers();
         for (Patient user : listUsers) {
-            if (user.getCpf().equals(cpf)){
+            if (user.getCpf().equals(cpf)) {
                 return user;
             }
         } //        for (int i = 0; i < this.listPatient.size(); i++) {
@@ -61,7 +61,7 @@ public class PatientRepo {
 //                break;
 //            }
 //        }
-        
+
 //        int ret = -1;
 //        for (int i = 0; i < this.listPatient.size(); i++) {
 //            if (user.getCpf().trim().equals(this.listPatient.get(i).getCpf().trim())) {
@@ -73,12 +73,10 @@ public class PatientRepo {
 //        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
 //        return this.listPatient;
         //return ret;
-        
         //return this.listPatient;
-        
         //return ret;
         return null;
-          
+
     }
 
     /**
@@ -148,7 +146,7 @@ public class PatientRepo {
         }
         persistUser.updateData(user);
 
-        this.listPatient.set(this.ifExists(user), user);   
+        this.listPatient.set(this.ifExists(user), user);
     }
 
     /**
@@ -167,7 +165,7 @@ public class PatientRepo {
         }
         return ret;
     }
-    
+
     public int searchCpf(Patient user) {
         int retorno = -1;
         for (int i = 0; i < this.listPatient.size(); i++) {
@@ -179,12 +177,10 @@ public class PatientRepo {
 //        JOptionPane.showMessageDialog(null, ret);
         return retorno;
     }
-    
-    
+
     public ArrayList<Patient> listAllUsers(String cpf) throws Exception {
         this.listPatient = persistUser.readData(cpf);
         return this.listPatient;
     }
-
 
 }

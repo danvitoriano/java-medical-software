@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @author dvitoriano
  */
 public class ImageRepo {
+
     private ArrayList<Image> listUser;
     private static ImageRepo instanceUserRep;
     public static javax.swing.filechooser.FileFilter ImageFileFilter;
@@ -39,6 +40,7 @@ public class ImageRepo {
     /**
      * return all users
      *
+     * @param idRecord
      * @return
      * @throws java.lang.Exception
      */
@@ -46,8 +48,6 @@ public class ImageRepo {
         this.listUser = persistUser.readData(idRecord);
         return this.listUser;
     }
-
-
 
     /**
      * add an image
@@ -77,7 +77,7 @@ public class ImageRepo {
         if (image.getUrl().trim().equals("")) {
             throw new Exception("c");
         }
-        
+
         persistUser.setData(image);
     }
 
@@ -114,7 +114,7 @@ public class ImageRepo {
         }
         persistUser.updateData(user);
 
-        this.listUser.set(this.ifExists(user), user);   
+        this.listUser.set(this.ifExists(user), user);
     }
 
     /**
@@ -133,11 +133,12 @@ public class ImageRepo {
         }
         return ret;
     }
-    
-    public class ImageFileFilter implements FileFilter {
-        private final String[] okFileExtensions = new String[] {"jpg"};
 
-        public boolean accept(File file){
+    public class ImageFileFilter implements FileFilter {
+
+        private final String[] okFileExtensions = new String[]{"jpg"};
+
+        public boolean accept(File file) {
             for (String extension : okFileExtensions) {
                 if (file.getName().toLowerCase().endsWith(extension)) {
                     return true;
@@ -146,8 +147,8 @@ public class ImageRepo {
             return false;
         }
     }
-    
-    public static void salvarImagem(File file, String dataHora) throws IOException{
+
+    public static void salvarImagem(File file, String dataHora) throws IOException {
         //String caminhoImagem = dataHora + file.getName();
         String caminhoImagem = null;
         try {
@@ -158,7 +159,7 @@ public class ImageRepo {
         caminhoImagem = dataHora + file.getName();
         file.renameTo(new File(caminhoImagem));
     }
-    
+
     public int searchCpf(Image user) {
         int retorno = -1;
         for (int i = 0; i < this.listUser.size(); i++) {
@@ -170,7 +171,7 @@ public class ImageRepo {
 //        JOptionPane.showMessageDialog(null, ret);
         return retorno;
     }
-    
+
     public static Dimension obterDimensaoProporcional(int imgWidth, int imgHeight, int maxWidth, int maxHeight) {
 
         int originalWidth = imgWidth;
@@ -198,11 +199,10 @@ public class ImageRepo {
         //Retorna a dimensão máxima mantendo a proporcionalidade
         return new Dimension(novoWidth, novoHeight);
     }
-    
+
     public ArrayList<Image> listAllUsers2(String id, String idRecord) throws Exception {
-        this.listUser = persistUser.readData2(id,idRecord);
+        this.listUser = persistUser.readData2(id, idRecord);
         return this.listUser;
     }
-
 
 }

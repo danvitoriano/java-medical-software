@@ -45,6 +45,7 @@ public class RecordPersist {
     /**
      * list all records
      *
+     * @param cpfPatient
      * @return
      * @throws java.io.FileNotFoundException
      */
@@ -60,18 +61,18 @@ public class RecordPersist {
             String anamnese = params[2];
             String dt = params[3];
             String idUser = params[4];
-            
-            if(cpfPatient ==  null || cpf.equals(cpfPatient)){
+
+            if (cpfPatient == null || cpf.equals(cpfPatient)) {
                 Record record = new Record();
                 record.setCpf(cpf);
                 record.setId(id);
                 record.setAnamnese(anamnese);
                 record.setDt(dt);
                 record.setIdUser(idUser);
-                
+
                 records.add(record);
             }
-            
+
             line = reader.readLine();
         }
         return records;
@@ -112,13 +113,13 @@ public class RecordPersist {
             fileOut.close();
         }
     }
-    
-    public String getCpf() throws Exception{
+
+    public String getCpf() throws Exception {
         ArrayList<Record> cpfs = readData(null);
         int i = 1;
         for (Record users : cpfs) {
             int userCpf = Integer.parseInt(users.getCpf());
-            if (userCpf>i) {
+            if (userCpf > i) {
                 i = userCpf + 1;
             }
         }

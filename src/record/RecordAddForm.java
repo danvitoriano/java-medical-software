@@ -168,7 +168,7 @@ public class RecordAddForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        try{
+        try {
             Record user = new Record();
             user.setCpf(jTextFieldCpf.getText());
             user.setId(jTextFieldNome.getText());
@@ -178,7 +178,7 @@ public class RecordAddForm extends javax.swing.JFrame {
             RecordRepo.getInstance().inserir(user);
             this.setVisible(false);
             this.dispose();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
