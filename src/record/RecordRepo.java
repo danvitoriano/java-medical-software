@@ -70,10 +70,10 @@ public class RecordRepo {
         if (user.getDt().trim().equals("")) {
             throw new Exception("Entre com 0 ou 1");
         }
-        if (user.getAnamnese() == null) {
+        if (user.getRecord() == null) {
             throw new Exception("Profile");
         }
-        if (user.getAnamnese().trim().equals("")) {
+        if (user.getRecord().trim().equals("")) {
             throw new Exception("c");
         }
         if (user.getIdUser() == null) {
@@ -116,10 +116,10 @@ public class RecordRepo {
         if (user.getDt().trim().equals("")) {
             throw new Exception("Entre com 0 ou 1");
         }
-        if (user.getAnamnese() == null) {
+        if (user.getRecord() == null) {
             throw new Exception("Profile");
         }
-        if (user.getAnamnese().trim().equals("")) {
+        if (user.getRecord().trim().equals("")) {
             throw new Exception("informe o tipo");
         }
         if (this.ifExists(user) == -1) {

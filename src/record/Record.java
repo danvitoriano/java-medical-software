@@ -11,7 +11,7 @@ package record;
  */
 public class Record {
 
-    private String cpf, id, anamnese, dt, idUser;
+    private String cpf, id, record, dt, idUser;
 
     public String getCpf() {
         return cpf;
@@ -29,12 +29,12 @@ public class Record {
         this.id = id;
     }
 
-    public String getAnamnese() {
-        return anamnese;
+    public String getRecord() {
+        return record;
     }
 
-    public void setAnamnese(String anamnese) {
-        this.anamnese = anamnese;
+    public void setRecord(String record) {
+        this.record = record;
     }
 
     public String getDt() {

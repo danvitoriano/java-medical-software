@@ -35,7 +35,7 @@ public class RecordPersist {
         BufferedWriter bw = new BufferedWriter(osw);
         bw.write(record.getCpf() + ";");
         bw.write(record.getId() + ";");
-        bw.write(record.getAnamnese() + ";");
+        bw.write(record.getRecord() + ";");
         bw.write(record.getDt() + ";");
         bw.write(record.getIdUser() + ";");
         bw.write("\n");
@@ -66,7 +66,7 @@ public class RecordPersist {
                 Record record = new Record();
                 record.setCpf(cpf);
                 record.setId(id);
-                record.setAnamnese(anamnese);
+                record.setRecord(anamnese);
                 record.setDt(dt);
                 record.setIdUser(idUser);
                 
@@ -96,13 +96,13 @@ public class RecordPersist {
             if (linha.getCpf().contains(searchCpf)) {
                 linha.setCpf(user.getCpf());
                 linha.setId(user.getId());
-                linha.setAnamnese(user.getAnamnese());
+                linha.setRecord(user.getRecord());
                 linha.setDt(user.getDt());
                 linha.setIdUser(user.getIdUser());
             }
             newLines.add(linha.getCpf() + ";"
                     + linha.getId() + ";"
-                    + linha.getAnamnese() + ";"
+                    + linha.getRecord() + ";"
                     + linha.getDt() + ";"
                     + linha.getIdUser() + ";\n");
         }

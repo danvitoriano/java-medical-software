@@ -20,7 +20,7 @@ public class RecordEditForm extends javax.swing.JFrame {
         this.userEdit = user;
         jTextFieldCpf.setText(this.userEdit.getCpf());
         jTextFieldNome.setText(this.userEdit.getId());
-        jTextFieldSenha.setText(this.userEdit.getAnamnese());
+        jTextFieldSenha.setText(this.userEdit.getRecord());
         jTextFieldAtivo.setText(this.userEdit.getDt());
     }
 
@@ -175,7 +175,7 @@ public class RecordEditForm extends javax.swing.JFrame {
         try {
             userEdit.setCpf(jTextFieldCpf.getText());
             userEdit.setId(jTextFieldNome.getText());
-            userEdit.setAnamnese(jTextFieldSenha.getText());
+            userEdit.setRecord(jTextFieldSenha.getText());
             userEdit.setDt(jTextFieldAtivo.getText());
             RecordRepo rep = RecordRepo.getInstance();
             rep.update(userEdit);

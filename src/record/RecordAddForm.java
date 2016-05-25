@@ -172,7 +172,7 @@ public class RecordAddForm extends javax.swing.JFrame {
             Record user = new Record();
             user.setCpf(jTextFieldCpf.getText());
             user.setId(jTextFieldNome.getText());
-            user.setAnamnese(jTextFieldSenha.getText());
+            user.setRecord(jTextFieldSenha.getText());
             user.setDt(jTextFieldAtivo.getText());
             user.setIdUser(jTextField1.getText());
             RecordRepo.getInstance().insert(user);

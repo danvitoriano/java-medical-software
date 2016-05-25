@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author vitoriano
  */
 public class RecordListForm extends javax.swing.JFrame {
-    private ArrayList<Record> lista;
+    private ArrayList<Record> list;
     private final Patient patientRecord;
 
     /**
@@ -46,7 +46,6 @@ public class RecordListForm extends javax.swing.JFrame {
         jButtonListar = new javax.swing.JButton();
         jButtonNovoUsuario = new javax.swing.JButton();
         jButtonAlterarUsuario = new javax.swing.JButton();
-        jButtonBuscar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -85,13 +84,6 @@ public class RecordListForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonBuscar.setText("Buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("image");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,8 +109,7 @@ public class RecordListForm extends javax.swing.JFrame {
                         .addComponent(jButtonAlterarUsuario)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonBuscar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,7 +122,6 @@ public class RecordListForm extends javax.swing.JFrame {
                     .addComponent(jButtonListar)
                     .addComponent(jButtonNovoUsuario)
                     .addComponent(jButtonAlterarUsuario)
-                    .addComponent(jButtonBuscar)
                     .addComponent(jButton1))
                 .addContainerGap())
         );
@@ -152,37 +142,31 @@ public class RecordListForm extends javax.swing.JFrame {
         
         RecordRepo rep = RecordRepo.getInstance();        
         try {
-            this.lista = rep.listAllUsers(patientRecord.getCpf());
+            this.list = rep.listAllUsers(patientRecord.getCpf());
         } catch (Exception ex) {
             Logger.getLogger(RecordListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        for(int i = 0; i < lista.size(); i++){
+        for(int i = 0; i < list.size(); i++){
             modelo.addRow(new Object[]{
-                this.lista.get(i).getCpf(),
-                this.lista.get(i).getId(),
-                this.lista.get(i).getAnamnese(),
-                this.lista.get(i).getDt(),
-                this.lista.get(i).getIdUser()});
+                this.list.get(i).getCpf(),
+                this.list.get(i).getId(),
+                this.list.get(i).getRecord(),
+                this.list.get(i).getDt(),
+                this.list.get(i).getIdUser()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
         // TODO add your handling code here:
-        RecordEditForm form = new RecordEditForm(this.lista.get(jTable1.getSelectedRow()));
+        RecordEditForm form = new RecordEditForm(this.list.get(jTable1.getSelectedRow()));
         form.show();
     }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
 
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
-        RecordSearchForm form = new RecordSearchForm();
-        form.show();
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ImageListForm form = new ImageListForm(this.lista.get(jTable1.getSelectedRow()));
+        ImageListForm form = new ImageListForm(this.list.get(jTable1.getSelectedRow()));
         form.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -224,7 +208,6 @@ public class RecordListForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlterarUsuario;
-    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonNovoUsuario;
     private javax.swing.JScrollPane jScrollPane1;

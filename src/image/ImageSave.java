@@ -11,14 +11,14 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author Rafael
+ * @author vitoriano
  */
 public class ImageSave {
         public static String pathVerify() throws IOException {
-            String diretorio = new File("").getAbsolutePath();
-            if(!Paths.get(diretorio).toFile().exists()) {
-                new File(diretorio).mkdir();
+            String folder = new File("").getAbsolutePath();
+            if(!Paths.get(folder).toFile().exists()) {
+                new File(folder).mkdir();
             }
-            return diretorio;
+            return folder;
         }
 }

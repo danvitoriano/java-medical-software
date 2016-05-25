@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserListForm extends javax.swing.JFrame {
 
-    private ArrayList<User> lista;
+    private ArrayList<User> list;
 
     /**
      * Creates new form FormConsultaUser
@@ -41,7 +41,6 @@ public class UserListForm extends javax.swing.JFrame {
         jButtonListar = new javax.swing.JButton();
         jButtonNovoUsuario = new javax.swing.JButton();
         jButtonAlterarUsuario = new javax.swing.JButton();
-        jButtonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,13 +78,6 @@ public class UserListForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonBuscar.setText("Buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,8 +93,6 @@ public class UserListForm extends javax.swing.JFrame {
                 .addComponent(jButtonNovoUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAlterarUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,8 +104,7 @@ public class UserListForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonListar)
                     .addComponent(jButtonNovoUsuario)
-                    .addComponent(jButtonAlterarUsuario)
-                    .addComponent(jButtonBuscar))
+                    .addComponent(jButtonAlterarUsuario))
                 .addContainerGap())
         );
 
@@ -135,13 +124,13 @@ public class UserListForm extends javax.swing.JFrame {
 
         UserRepo rep = UserRepo.getInstance();
         try {
-            this.lista = rep.listAllUsers();
+            this.list = rep.listAllUsers();
         } catch (Exception ex) {
             Logger.getLogger(UserListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i < lista.size(); i++) {
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(), this.lista.get(i).getName(), this.lista.get(i).getPwd(), this.lista.get(i).getActive(), this.lista.get(i).getProfile()});
+        for (int i = 0; i < list.size(); i++) {
+            modelo.addRow(new Object[]{this.list.get(i).getCpf(), this.list.get(i).getName(), this.list.get(i).getPwd(), this.list.get(i).getActive(), this.list.get(i).getProfile()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
@@ -152,16 +141,10 @@ public class UserListForm extends javax.swing.JFrame {
         if (row == -1){
             JOptionPane.showMessageDialog(null, "Selecione um usuário!");
         }else{
-            UserEditForm form = new UserEditForm(this.lista.get(row));
+            UserEditForm form = new UserEditForm(this.list.get(row));
             form.show();
         }
     }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
-
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
-        UserSearchForm form = new UserSearchForm();
-        form.show();
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +198,6 @@ public class UserListForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterarUsuario;
-    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonNovoUsuario;
     private javax.swing.JScrollPane jScrollPane1;

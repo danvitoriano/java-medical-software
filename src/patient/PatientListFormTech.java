@@ -17,7 +17,7 @@ import record.RecordListForm;
  */
 public class PatientListFormTech extends javax.swing.JFrame {
 
-    private ArrayList<Patient> lista;
+    private ArrayList<Patient> list;
     //private Patient patientCpf;
 
     /**
@@ -138,13 +138,13 @@ public class PatientListFormTech extends javax.swing.JFrame {
 
         PatientRepo rep = PatientRepo.getInstance();
         try {
-            this.lista = rep.listAllUsers();
+            this.list = rep.listAllUsers();
         } catch (Exception ex) {
             Logger.getLogger(PatientListFormTech.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i < lista.size(); i++) {
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(), this.lista.get(i).getName(), this.lista.get(i).getActive()});
+        for (int i = 0; i < list.size(); i++) {
+            modelo.addRow(new Object[]{this.list.get(i).getCpf(), this.list.get(i).getName(), this.list.get(i).getActive()});
         }
         jTable1.setModel(modelo);
     }//GEN-LAST:event_jButtonListarActionPerformed
@@ -159,13 +159,13 @@ public class PatientListFormTech extends javax.swing.JFrame {
         String patientCpfd = jTextFieldBuscar.getText();
 
         try {
-            this.lista = rep.listAllUsers(patientCpfd);
+            this.list = rep.listAllUsers(patientCpfd);
         } catch (Exception ex) {
             Logger.getLogger(PatientListFormTech.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i < lista.size(); i++) {
-            modelo.addRow(new Object[]{this.lista.get(i).getCpf(), this.lista.get(i).getName(), this.lista.get(i).getActive()});
+        for (int i = 0; i < list.size(); i++) {
+            modelo.addRow(new Object[]{this.list.get(i).getCpf(), this.list.get(i).getName(), this.list.get(i).getActive()});
         }
         jTable1.setModel(modelo);
 //        
@@ -174,7 +174,7 @@ public class PatientListFormTech extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RecordListForm form = new RecordListForm(this.lista.get(jTable1.getSelectedRow()));
+        RecordListForm form = new RecordListForm(this.list.get(jTable1.getSelectedRow()));
         form.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 

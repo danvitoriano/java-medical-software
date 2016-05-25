@@ -74,7 +74,7 @@ public class ImagePersist {
     }
     
     /**
-     * list all images
+     * search images sort by patient
      *
      * @param imgId Image Id String
      * @param imgIdRecord Image Record String
@@ -144,6 +144,11 @@ public class ImagePersist {
         }
     }
     
+    /**
+     * return identifier
+     * @return String value of id
+     * @throws Exception
+     */
     public String getIdentifier() throws Exception{
         ArrayList<Image> records = readData(null);
         int i = 1;

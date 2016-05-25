@@ -24,8 +24,8 @@ import record.Record;
  */
 public class ImageListForm extends javax.swing.JFrame {
     public final Record recordImage;
-    private ArrayList<Image> lista;
-    ImageSave diretorio = new ImageSave();
+    private ArrayList<Image> list;
+    ImageSave folder = new ImageSave();
     ImagePersist imagePersist = new ImagePersist();
     private File imageUrl;
 
@@ -243,20 +243,20 @@ public class ImageListForm extends javax.swing.JFrame {
         
         ImageRepo rep = ImageRepo.getInstance();        
         try {
-            this.lista = rep.listAllUsers(recordImage.getId());
+            this.list = rep.listAllUsers(recordImage.getId());
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        for(int i = 0; i < lista.size(); i++){
-            model.addRow(new Object[]{this.lista.get(i).getId(),this.lista.get(i).getIdRecord(),this.lista.get(i).getUrl()});
+        for(int i = 0; i < list.size(); i++){
+            model.addRow(new Object[]{this.list.get(i).getId(),this.list.get(i).getIdRecord(),this.list.get(i).getUrl()});
         }
         jTable1.setModel(model);
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarUsuarioActionPerformed
         // TODO add your handling code here:
-        ImageEditForm form = new ImageEditForm(this.lista.get(jTable1.getSelectedRow()));
+        ImageEditForm form = new ImageEditForm(this.list.get(jTable1.getSelectedRow()));
         form.show();
     }//GEN-LAST:event_jButtonAlterarUsuarioActionPerformed
 
@@ -271,13 +271,13 @@ public class ImageListForm extends javax.swing.JFrame {
         int imgStr = 1;
 
         try {
-            this.lista = rep.listAllUsers2(imageIdd, recordImage.getId());
+            this.list = rep.listAllUsers2(imageIdd, recordImage.getId());
         } catch (Exception ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{this.lista.get(i).getId(), this.lista.get(i).getIdRecord(), this.lista.get(i).getUrl()});
+        for (int i = 0; i < list.size(); i++) {
+            model.addRow(new Object[]{this.list.get(i).getId(), this.list.get(i).getIdRecord(), this.list.get(i).getUrl()});
         }
         jTable1.setModel(model);
     }//GEN-LAST:event_jButtonBuscarActionPerformed
@@ -324,10 +324,10 @@ public class ImageListForm extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Image selectedImage = this.lista.get(jTable1.getSelectedRow());
+        Image selectedImage = this.list.get(jTable1.getSelectedRow());
         String imagePath = null;
         try {
-            imagePath = diretorio.pathVerify();
+            imagePath = folder.pathVerify();
         } catch (IOException ex) {
             Logger.getLogger(ImageListForm.class.getName()).log(Level.SEVERE, null, ex);
         }
